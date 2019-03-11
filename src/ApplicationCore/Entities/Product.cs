@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ApplicationCore.Entities
 {
-    public class Product
-    {
-        public int ProductId { get; set; }
+    public class Product : Entity
+    {        
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }
         public decimal? UnitPrice { get; set; }

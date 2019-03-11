@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApplicationCore.Interfaces
+namespace ApplicationCore.Services
 {
-    class ICustomerAppService
+    public class CategoryAppService
     {
+
     }
 }

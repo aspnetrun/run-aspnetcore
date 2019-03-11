@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ApplicationCore.Interfaces
 {
-    public interface IProductAppService
+    public interface IEntity
     {
-
-    }    
+        int Id { get; set; }
+    }
 }
