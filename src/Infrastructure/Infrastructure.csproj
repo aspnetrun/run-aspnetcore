@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
