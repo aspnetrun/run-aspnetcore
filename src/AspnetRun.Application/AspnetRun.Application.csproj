@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>

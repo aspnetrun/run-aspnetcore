@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitTest
+namespace AspnetRun.Core
 {
     public class Class1
     {

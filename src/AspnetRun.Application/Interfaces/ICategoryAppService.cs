@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApplicationCore.Services
+namespace AspnetRun.Application.Interfaces
 {
-    class ProductAppService
+    class ICategoryAppService
     {
     }
 }

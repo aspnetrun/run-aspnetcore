@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApplicationCore.Entities
+namespace AspnetRun.Core.Entities
 {
     public class Category : Entity
     {

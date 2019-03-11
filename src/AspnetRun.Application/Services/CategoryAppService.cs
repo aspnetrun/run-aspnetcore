@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApplicationCore.Services
+namespace AspnetRun.Application.Services
 {
     public class CategoryAppService
     {
