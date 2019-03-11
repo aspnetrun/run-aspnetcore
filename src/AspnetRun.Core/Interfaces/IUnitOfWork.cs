@@ -4,8 +4,9 @@ using System.Text;
 
 namespace AspnetRun.Core.Interfaces
 {
-    public interface IEntity
+    public interface IUnitOfWork : IDisposable
     {
-        int Id { get; set; }
+        void Commit();
+        void Rollback();
     }
 }

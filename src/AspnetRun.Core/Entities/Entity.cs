@@ -1,9 +1,10 @@
 ﻿using AspnetRun.Core.Interfaces;
+using System;
 
 namespace AspnetRun.Core.Entities
 {
-    public abstract class Entity : IEntity
+    public abstract class Entity : IAggregateRoot
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
