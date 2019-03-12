@@ -21,9 +21,10 @@ namespace AspnetRun.Web.Pages
         public IEnumerable<ProductViewModel> ProductModel { get; set; } = new List<ProductViewModel>();
 
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             ProductModel = _productRazorService.GetProducts();
+            return Page();
         }
     }
 }

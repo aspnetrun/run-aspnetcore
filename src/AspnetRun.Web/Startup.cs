@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Infrastructure.Logging;
+using AspnetRun.Infrastructure.Persistence;
 using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.Services;
@@ -14,6 +16,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,9 +31,40 @@ namespace AspnetRun.Web
 
         public IConfiguration Configuration { get; }
 
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            // use in-memory database
+            ConfigureInMemoryDatabases(services);
+
+            // use real database
+            // ConfigureProductionServices(services);
+        }
+
+        private void ConfigureInMemoryDatabases(IServiceCollection services)
+        {
+            // use in-memory database
+            services.AddDbContext<AspnetRunContext>(c =>
+                c.UseInMemoryDatabase("AspnetRunConnection"));
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            // use real database            
+            services.AddDbContext<AspnetRunContext>(c =>
+                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+
+            ConfigureServices(services);
+        }
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            ///// aspnetrun dependencies
+            
             services.AddAutoMapper();
 
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -39,6 +73,10 @@ namespace AspnetRun.Web
             services.AddScoped<IProductRazorService, ProductRazorService>();
             services.AddScoped<IProductAppService, ProductAppService>();
 
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
             services.Configure<CookiePolicyOptions>(options =>
