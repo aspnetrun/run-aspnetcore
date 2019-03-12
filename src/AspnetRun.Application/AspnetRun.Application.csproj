@@ -8,4 +8,8 @@
     <Folder Include="Mapper\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AspnetRun.Core\AspnetRun.Core.csproj" />
+  </ItemGroup>
+
 </Project>

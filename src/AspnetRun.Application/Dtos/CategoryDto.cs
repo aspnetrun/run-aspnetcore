@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AspnetRun.Application.Dtos
 {
-    class CategoryDto
+    public class CategoryDto
     {
     }
 }
