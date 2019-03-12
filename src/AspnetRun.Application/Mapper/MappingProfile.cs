@@ -7,11 +7,11 @@ using System.Text;
 
 namespace AspnetRun.Application.Mapper
 {
-    public class MappingProfile : Profile
-    {
-        public MappingProfile()
-        {
-            CreateMap<Product, ProductDto>();
-        }
-    }
+    //public class MappingProfile : Profile
+    //{
+    //    public MappingProfile()
+    //    {
+    //        CreateMap<Product, ProductDto>();
+    //    }
+    //}
 }
