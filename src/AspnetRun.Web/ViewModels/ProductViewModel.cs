@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace AspnetRun.Application.Dtos
+namespace AspnetRun.Web.ViewModels
 {
-    public class ProductDto
+    public class ProductViewModel
     {
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }

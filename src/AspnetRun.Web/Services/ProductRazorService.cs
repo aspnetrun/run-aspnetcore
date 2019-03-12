@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Interfaces;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
+using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,20 @@ namespace AspnetRun.Web.Services
     {
         private readonly IProductAppService _productAppService;
         private readonly ILogger<ProductRazorService> _logger;
+        private readonly IMapper _mapper;
 
-        public ProductRazorService(IProductAppService productAppService, ILogger<ProductRazorService> logger)
+        public ProductRazorService(IProductAppService productAppService, ILogger<ProductRazorService> logger, IMapper mapper)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Task<ProductListViewModel> GetProducts()
+        public IEnumerable<ProductViewModel> GetProducts()
         {
-            throw new NotImplementedException();
+            var list = _productAppService.GetProductList();
+            var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
+            return mapped;
         }
     }
 }
