@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AspnetRun.Core.Interfaces
 {
-    public interface IRepository<T> where T : Entity
+    public interface IRepository<T> where T : BaseEntity
     {
         T GetById(int id);
         // T GetSingleBySpec(ISpecification<T> spec);

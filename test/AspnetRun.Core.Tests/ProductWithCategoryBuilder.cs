@@ -3,8 +3,13 @@ using Xunit;
 
 namespace AspnetRun.Core.Tests
 {
-    public class UnitTest1
+    public class ProductWithCategoryBuilder
     {
+        public ProductWithCategoryBuilder()
+        {
+
+        }
+
         [Fact]
         public void Test1()
         {

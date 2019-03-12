@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
 {
-    public class EfRepository<T> : IRepository<T>, IAsyncRepository<T> where T : Entity
+    public class EfRepository<T> : IRepository<T>, IAsyncRepository<T> where T : BaseEntity
     {
         protected readonly AspnetRunContext _dbContext;
 

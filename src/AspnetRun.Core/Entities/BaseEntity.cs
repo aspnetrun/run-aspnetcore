@@ -3,13 +3,13 @@ using System;
 
 namespace AspnetRun.Core.Entities
 {
-    public abstract class Entity : IAggregateRoot
+    public abstract class BaseEntity : IAggregateRoot
     {
         public Guid Id { get; protected set; }
 
         public override bool Equals(object obj)
         {
-            var compareTo = obj as Entity;
+            var compareTo = obj as BaseEntity;
 
             if (ReferenceEquals(this, compareTo)) return true;
             if (ReferenceEquals(null, compareTo)) return false;
@@ -17,7 +17,7 @@ namespace AspnetRun.Core.Entities
             return Id.Equals(compareTo.Id);
         }
 
-        public static bool operator ==(Entity a, Entity b)
+        public static bool operator ==(BaseEntity a, BaseEntity b)
         {
             if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
                 return true;
@@ -28,7 +28,7 @@ namespace AspnetRun.Core.Entities
             return a.Equals(b);
         }
 
-        public static bool operator !=(Entity a, Entity b)
+        public static bool operator !=(BaseEntity a, BaseEntity b)
         {
             return !(a == b);
         }

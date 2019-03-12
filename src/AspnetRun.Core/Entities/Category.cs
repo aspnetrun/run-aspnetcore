@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
-    public class Category : Entity
+    public class Category : BaseEntity
     {
         public Category()
         {
@@ -16,5 +17,28 @@ namespace AspnetRun.Core.Entities
         public byte[] Picture { get; set; }
 
         public ICollection<Product> Products { get; private set; }
+
+        public static Category Create(Guid categoryId, string name, string description = null)
+        {
+            var category = new Category
+            {
+                Id = categoryId,
+                CategoryName = name,
+                Description = description
+            };
+
+            return category;
+        }
+
+        public void AddProduct(Guid productId, string productName)
+        {
+            if (!Products.Any(p => p.Id == productId))
+            {
+                Products.Add(Product.Create(productId, this.Id, productName));
+                return;
+            }
+
+            var existingProduct = Products.FirstOrDefault(p => p.Id == productId);
+        }
     }
 }
