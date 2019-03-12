@@ -17,15 +17,13 @@ namespace AspnetRun.Infrastructure.Persistence
             try
             {
                 // TODO: Only run this if using a real database
-                aspnetrunContext.Database.Migrate();
+                // aspnetrunContext.Database.Migrate();
 
                 if (!aspnetrunContext.Products.Any())
                 {
                     aspnetrunContext.Products.AddRange(GetPreconfiguredProducts());
                     await aspnetrunContext.SaveChangesAsync();
                 }
-               
-
             }
             catch (Exception exception)
             {

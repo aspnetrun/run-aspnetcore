@@ -7,15 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01A3BD1A-5FB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Core", "src\AspnetRun.Core\AspnetRun.Core.csproj", "{2CC7AC1C-DDA2-4BF5-8D46-E8881DAA811E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Core", "src\AspnetRun.Core\AspnetRun.Core.csproj", "{2CC7AC1C-DDA2-4BF5-8D46-E8881DAA811E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Application", "src\AspnetRun.Application\AspnetRun.Application.csproj", "{13D34DC5-E8C8-4299-9FAE-619CCDD6ED0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Application", "src\AspnetRun.Application\AspnetRun.Application.csproj", "{13D34DC5-E8C8-4299-9FAE-619CCDD6ED0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Infrastructure", "src\AspnetRun.Infrastructure\AspnetRun.Infrastructure.csproj", "{7CB23810-1F4B-4940-891C-59707F2D1A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Infrastructure", "src\AspnetRun.Infrastructure\AspnetRun.Infrastructure.csproj", "{7CB23810-1F4B-4940-891C-59707F2D1A72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Tests", "test\AspnetRun.Tests\AspnetRun.Tests.csproj", "{EBF74087-D852-48B3-9019-F54609F35A76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Web", "src\AspnetRun.Web\AspnetRun.Web.csproj", "{2D55F0E2-9FA4-412C-AA61-31551B081CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Web", "src\AspnetRun.Web\AspnetRun.Web.csproj", "{2D55F0E2-9FA4-412C-AA61-31551B081CF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Core.Tests", "test\AspnetRun.Core.Tests\AspnetRun.Core.Tests.csproj", "{99500910-759E-4BB0-80CE-7A0253100ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Infrastructure.Tests", "test\AspnetRun.Infrastructure.Tests\AspnetRun.Infrastructure.Tests.csproj", "{A45DAD46-157E-4B24-99B9-9A8334FA7945}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Application.Tests", "test\AspnetRun.Application.Tests\AspnetRun.Application.Tests.csproj", "{0889FF01-29BA-4387-A64C-2E60199C9544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Web.Tests", "test\AspnetRun.Web.Tests\AspnetRun.Web.Tests.csproj", "{BFB2CC68-CE2B-4346-982B-CE06CB303A26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +41,26 @@ Global
 		{7CB23810-1F4B-4940-891C-59707F2D1A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB23810-1F4B-4940-891C-59707F2D1A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB23810-1F4B-4940-891C-59707F2D1A72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBF74087-D852-48B3-9019-F54609F35A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBF74087-D852-48B3-9019-F54609F35A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBF74087-D852-48B3-9019-F54609F35A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBF74087-D852-48B3-9019-F54609F35A76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D55F0E2-9FA4-412C-AA61-31551B081CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D55F0E2-9FA4-412C-AA61-31551B081CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D55F0E2-9FA4-412C-AA61-31551B081CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D55F0E2-9FA4-412C-AA61-31551B081CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99500910-759E-4BB0-80CE-7A0253100ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99500910-759E-4BB0-80CE-7A0253100ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99500910-759E-4BB0-80CE-7A0253100ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99500910-759E-4BB0-80CE-7A0253100ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45DAD46-157E-4B24-99B9-9A8334FA7945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45DAD46-157E-4B24-99B9-9A8334FA7945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45DAD46-157E-4B24-99B9-9A8334FA7945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45DAD46-157E-4B24-99B9-9A8334FA7945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0889FF01-29BA-4387-A64C-2E60199C9544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0889FF01-29BA-4387-A64C-2E60199C9544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0889FF01-29BA-4387-A64C-2E60199C9544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0889FF01-29BA-4387-A64C-2E60199C9544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB2CC68-CE2B-4346-982B-CE06CB303A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB2CC68-CE2B-4346-982B-CE06CB303A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB2CC68-CE2B-4346-982B-CE06CB303A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB2CC68-CE2B-4346-982B-CE06CB303A26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,8 +69,11 @@ Global
 		{2CC7AC1C-DDA2-4BF5-8D46-E8881DAA811E} = {01A3BD1A-5FB5-4DAC-8AE5-E04D052DAB13}
 		{13D34DC5-E8C8-4299-9FAE-619CCDD6ED0B} = {01A3BD1A-5FB5-4DAC-8AE5-E04D052DAB13}
 		{7CB23810-1F4B-4940-891C-59707F2D1A72} = {01A3BD1A-5FB5-4DAC-8AE5-E04D052DAB13}
-		{EBF74087-D852-48B3-9019-F54609F35A76} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
 		{2D55F0E2-9FA4-412C-AA61-31551B081CF0} = {01A3BD1A-5FB5-4DAC-8AE5-E04D052DAB13}
+		{99500910-759E-4BB0-80CE-7A0253100ABC} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
+		{A45DAD46-157E-4B24-99B9-9A8334FA7945} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
+		{0889FF01-29BA-4387-A64C-2E60199C9544} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
+		{BFB2CC68-CE2B-4346-982B-CE06CB303A26} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8BE9427-55CD-4306-809D-6512B49A7F30}
