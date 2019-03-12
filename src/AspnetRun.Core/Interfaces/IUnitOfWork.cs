@@ -6,7 +6,7 @@ namespace AspnetRun.Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        void Commit();
+        bool Commit();
         void Rollback();
     }
 }

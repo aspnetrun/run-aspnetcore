@@ -24,5 +24,10 @@ namespace AspnetRun.Infrastructure.UnitOfWork
         {
             _context.Dispose();
         }
+
+        public void Rollback()
+        {
+            throw new NotImplementedException();
+        }       
     }
 }

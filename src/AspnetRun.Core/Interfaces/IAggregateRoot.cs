@@ -6,6 +6,6 @@ namespace AspnetRun.Core.Interfaces
 {
     public interface IAggregateRoot
     {
-        Guid Id { get; set; }
+        Guid Id { get; }
     }
 }
