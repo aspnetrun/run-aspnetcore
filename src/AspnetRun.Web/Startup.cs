@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Services;
+using AspnetRun.Core.Interfaces;
+using AspnetRun.Infrastructure.Repository;
+using AspnetRun.Web.Interfaces;
+using AspnetRun.Web.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +31,16 @@ namespace AspnetRun.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
+
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+
+            services.AddScoped<IProductRazorService, ProductRazorService>();
+            services.AddScoped<IProductAppService, ProductAppService>();
+
+
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

@@ -7,8 +7,15 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspnetRun.Application\AspnetRun.Application.csproj" />
+    <ProjectReference Include="..\AspnetRun.Infrastructure\AspnetRun.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,6 @@ namespace AspnetRun.Application.Interfaces
 {
     public interface IProductAppService
     {
-        IList<ProductDto> GetProductList();
+        IEnumerable<ProductDto> GetProductList();
     }    
 }
