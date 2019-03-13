@@ -18,7 +18,7 @@ namespace AspnetRun.Core.Entities
 
         public ICollection<Product> Products { get; private set; }
 
-        public static Category Create(Guid categoryId, string name, string description = null)
+        public static Category Create(int categoryId, string name, string description = null)
         {
             var category = new Category
             {
@@ -30,7 +30,7 @@ namespace AspnetRun.Core.Entities
             return category;
         }
 
-        public void AddProduct(Guid productId, string productName)
+        public void AddProduct(int productId, string productName)
         {
             if (!Products.Any(p => p.Id == productId))
             {

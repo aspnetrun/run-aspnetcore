@@ -8,8 +8,8 @@ namespace AspnetRun.Core.Tests.Entities
 {
     public class ProductCreate
     {
-        private Guid _testProductId = Guid.NewGuid();
-        private Guid _testCategoryId = Guid.NewGuid();
+        private int _testProductId = 2;
+        private int _testCategoryId = 3;
         private string _testProductName = "Reason";
         private decimal _testUnitPrice = 1.23m;
         private short _testQuantity = 2;

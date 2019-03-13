@@ -42,9 +42,8 @@ namespace AspnetRun.Web
             ConfigureDatabases(services);
 
             services.AddAutoMapper();
-
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
 
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IProductRazorService, ProductRazorService>();
@@ -53,6 +52,7 @@ namespace AspnetRun.Web
 
             services.Configure<AspnetRunSettings>(Configuration);
 
+            services.AddHttpContextAccessor();
             services.AddHealthChecks()
                 .AddCheck<IndexPageHealthCheck>("home_page_health_check");
 

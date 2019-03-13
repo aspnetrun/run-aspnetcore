@@ -5,7 +5,7 @@ namespace AspnetRun.Core.Entities
 {
     public abstract class BaseEntity : IAggregateRoot
     {
-        public Guid Id { get; protected set; }
+        public int Id { get; protected set; }
 
         public override bool Equals(object obj)
         {

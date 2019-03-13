@@ -8,9 +8,9 @@ namespace AspnetRun.Infrastructure.Tests.Builders
     public class ProductBuilder
     {
         private Product _product;
-        public Guid TestProductId { get; } = Guid.NewGuid();
+        public int TestProductId { get; } = 5;
         public string TestProductName => "Test Product Name";
-        public Guid TestCategoryId { get; } = Guid.NewGuid();
+        public int TestCategoryId { get; } = 8;
         
         public decimal TestUnitPrice = 1.23m;
         public short TestUnitInStock = 4;

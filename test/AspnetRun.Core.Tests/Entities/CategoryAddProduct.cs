@@ -9,8 +9,8 @@ namespace AspnetRun.Core.Tests.Entities
 {
     public class CategoryAddProduct
     {
-        private Guid _testProductId = Guid.NewGuid();   
-        private Guid _testCategoryId = Guid.NewGuid();
+        private int _testProductId = 3;   
+        private int _testCategoryId = 5;
         private string _testProductName = "Reason";
         private decimal _testUnitPrice = 1.23m;
         private short _testQuantity = 2;

@@ -13,10 +13,10 @@ namespace AspnetRun.Core.Entities
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
-        public Guid? CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public static Product Create(Guid productId, Guid categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
+        public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
         {
             var product = new Product
             {

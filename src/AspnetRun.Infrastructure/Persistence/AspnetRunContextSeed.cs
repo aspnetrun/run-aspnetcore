@@ -19,6 +19,12 @@ namespace AspnetRun.Infrastructure.Persistence
                 // TODO: Only run this if using a real database
                 // aspnetrunContext.Database.Migrate();
 
+                if (!aspnetrunContext.Categories.Any())
+                {
+                    aspnetrunContext.Categories.AddRange(GetPreconfiguredCategories());
+                    await aspnetrunContext.SaveChangesAsync();
+                }
+
                 if (!aspnetrunContext.Products.Any())
                 {
                     aspnetrunContext.Products.AddRange(GetPreconfiguredProducts());
@@ -38,13 +44,22 @@ namespace AspnetRun.Infrastructure.Persistence
             }
         }
 
+        private static IEnumerable<Category> GetPreconfiguredCategories()
+        {
+            return new List<Category>()
+            {
+                new Category() { CategoryName = "Phone"},
+                new Category() { CategoryName = "TV"}
+            };
+        }
+
         private static IEnumerable<Product> GetPreconfiguredProducts()
         {
             return new List<Product>()
             {
-                new Product() { ProductName = "IPhone"},
-                new Product() { ProductName = "Samsung"}
-            };            
+                new Product() { ProductName = "IPhone", CategoryId = 1 , UnitPrice = 19.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false },
+                new Product() { ProductName = "Samsung", CategoryId = 2 , UnitPrice = 33.5M , UnitsInStock = 10, QuantityPerUnit = "2", UnitsOnOrder = 1, ReorderLevel = 1, Discontinued = false }
+            };
         }
     }
 }

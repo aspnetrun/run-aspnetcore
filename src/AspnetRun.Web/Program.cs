@@ -18,6 +18,17 @@ namespace AspnetRun.Web
         {
             var host = CreateWebHostBuilder(args).Build();
 
+            SeedDatabase(host);
+
+            host.Run();
+        }        
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
+
+        private static void SeedDatabase(IWebHost host)
+        {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -25,9 +36,8 @@ namespace AspnetRun.Web
 
                 try
                 {
-                    var alfonsoContext = services.GetRequiredService<AspnetRunContext>();
-                    AspnetRunContextSeed.SeedAsync(alfonsoContext, loggerFactory).Wait();
-
+                    var aspnetRunContext = services.GetRequiredService<AspnetRunContext>();
+                    AspnetRunContextSeed.SeedAsync(aspnetRunContext, loggerFactory).Wait();
                 }
                 catch (Exception exception)
                 {
@@ -35,12 +45,6 @@ namespace AspnetRun.Web
                     logger.LogError(exception, "An error occurred seeding the DB.");
                 }
             }
-
-            host.Run();
         }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
     }
 }

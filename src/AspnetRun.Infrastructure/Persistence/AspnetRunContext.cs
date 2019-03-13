@@ -24,11 +24,33 @@ namespace AspnetRun.Infrastructure.Persistence
         }
 
         private void ConfigureProduct(EntityTypeBuilder<Product> builder)
-        {            
+        {
+            builder.ToTable("Product");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.ProductName)
+                .IsRequired()
+                .HasMaxLength(100);
         }
 
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
-        {            
+        {
+            builder.ToTable("Category");
+
+            builder.HasKey(ci => ci.Id);
+
+            builder.Property(ci => ci.Id)
+               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
+               .IsRequired();
+
+            builder.Property(cb => cb.CategoryName)
+                .IsRequired()
+                .HasMaxLength(100);
         }
     }
 }

@@ -24,16 +24,16 @@ namespace AspnetRun.Application.Tests.Services
         [Fact]
         public async Task Should_GetOnce_WhenAddedTwoProduct()
         {
-            var category = Category.Create(It.IsAny<Guid>(), It.IsAny<string>());
-            var product1 = Product.Create(It.IsAny<Guid>(), category.Id, It.IsAny<string>());
-            var product2 = Product.Create(It.IsAny<Guid>(), category.Id, It.IsAny<string>());
+            var category = Category.Create(It.IsAny<int>(), It.IsAny<string>());
+            var product1 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
+            var product2 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
             
             category.AddProduct(product1.Id, It.IsAny<string>());
             category.AddProduct(product2.Id, It.IsAny<string>());
 
-            _mockCategoryRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(category);
-            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(product1);
-            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(product2);
+            _mockCategoryRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(category);
+            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product1);
+            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product2);
 
             var productService = new ProductAppService(_mockProductRepository.Object);
             var productList = productService.GetProductList();
