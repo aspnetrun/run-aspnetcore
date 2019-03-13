@@ -12,16 +12,16 @@ namespace AspnetRun.Application.Services
 {
     public class ProductAppService : IProductAppService
     {
-        private readonly IRepository<Product> _productRepository;
+        private readonly IAsyncRepository<Product> _productRepository;
 
-        public ProductAppService(IRepository<Product> productRepository)
+        public ProductAppService(IAsyncRepository<Product> productRepository)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
         }
 
         public IEnumerable<ProductDto> GetProductList()
         {
-            var productList = _productRepository.ListAll();
+            var productList = _productRepository.ListAllAsync();
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
             return mapped;
         }
