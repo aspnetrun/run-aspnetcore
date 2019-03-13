@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
+using AspnetRun.Core;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Logging;
 using AspnetRun.Infrastructure.Persistence;
 using AspnetRun.Infrastructure.Repository;
+using AspnetRun.Web.HealthChecks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.Services;
 using AutoMapper;
@@ -29,18 +31,7 @@ namespace AspnetRun.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }      
-
-        public void ConfigureDatabases(IServiceCollection services)
-        {
-            // use in-memory database
-            services.AddDbContext<AspnetRunContext>(c =>
-                c.UseInMemoryDatabase("AspnetRunConnection"));
-
-            //// use real database            
-            //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));            
-        }
+        public IConfiguration Configuration { get; }             
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -55,11 +46,15 @@ namespace AspnetRun.Web
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
-            services.AddScoped<IProductRazorService, ProductRazorService>();
             services.AddScoped<IProductAppService, ProductAppService>();
+            services.AddScoped<IProductRazorService, ProductRazorService>();
 
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
+            services.Configure<AspnetRunSettings>(Configuration);
+
+            services.AddHealthChecks()
+                .AddCheck<IndexPageHealthCheck>("home_page_health_check");
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +89,17 @@ namespace AspnetRun.Web
             app.UseCookiePolicy();
 
             app.UseMvc();
+        }
+
+        public void ConfigureDatabases(IServiceCollection services)
+        {
+            // use in-memory database
+            services.AddDbContext<AspnetRunContext>(c =>
+                c.UseInMemoryDatabase("AspnetRunConnection"));
+
+            //// use real database            
+            //services.AddDbContext<AspnetRunContext>(c =>
+            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));            
         }
     }
 }
