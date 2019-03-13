@@ -19,12 +19,12 @@ namespace AspnetRun.Infrastructure.Repository
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(Guid id)
         {
             return _dbContext.Set<T>().Find(id);
         }
 
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
@@ -102,7 +102,7 @@ namespace AspnetRun.Infrastructure.Repository
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-        }
+        }       
 
         //private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         //{
