@@ -39,9 +39,8 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
 
             var productFromRepo = await _productRepository.GetByIdAsync(productId);
             Assert.Equal(ProductBuilder.TestProductId, productFromRepo.Id);
-            Assert.Equal(ProductBuilder.TestCategoryId, productFromRepo.CategoryId);          
+            Assert.Equal(ProductBuilder.TestCategoryId, productFromRepo.CategoryId);
         }
-
 
     }
 }
