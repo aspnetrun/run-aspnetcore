@@ -9,7 +9,7 @@ namespace AspnetRun.Infrastructure.Persistence
 {
     public class AspnetRunContext : DbContext
     {
-        public AspnetRunContext(DbContextOptions options) : base(options)
+        public AspnetRunContext(DbContextOptions<AspnetRunContext> options) : base(options)
         {
         }
 

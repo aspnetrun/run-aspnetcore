@@ -44,6 +44,7 @@ namespace AspnetRun.Web
             services.AddAutoMapper();
             
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IProductRazorService, ProductRazorService>();

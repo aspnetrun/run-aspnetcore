@@ -21,9 +21,9 @@ namespace AspnetRun.Web.Pages
         public IEnumerable<ProductViewModel> ProductModel { get; set; } = new List<ProductViewModel>();
 
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-            ProductModel = _productRazorService.GetProducts();
+            ProductModel = await _productRazorService.GetProducts();
             return Page();
         }
     }

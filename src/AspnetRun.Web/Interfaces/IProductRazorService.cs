@@ -8,6 +8,6 @@ namespace AspnetRun.Web.Interfaces
 {
     public interface IProductRazorService
     {
-        IEnumerable<ProductViewModel> GetProducts();
+        Task<IEnumerable<ProductViewModel>> GetProducts();
     }
 }

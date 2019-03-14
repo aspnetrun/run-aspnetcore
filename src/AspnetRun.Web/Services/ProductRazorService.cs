@@ -23,9 +23,9 @@ namespace AspnetRun.Web.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public IEnumerable<ProductViewModel> GetProducts()
+        public async Task<IEnumerable<ProductViewModel>> GetProducts()
         {
-            var list = _productAppService.GetProductList();
+            var list = await _productAppService.GetProductList();
             var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
             return mapped;
         }

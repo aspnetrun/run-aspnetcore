@@ -12,12 +12,12 @@ namespace AspnetRun.Application.Tests.Services
 {
     public class DeleteProduct
     {
-        private Mock<IAsyncRepository<Product>> _mockProductRepository;
+        private Mock<IProductRepository> _mockProductRepository;
         private Mock<IAsyncRepository<Category>> _mockCategoryRepository;
 
         public DeleteProduct()
         {
-            _mockProductRepository = new Mock<IAsyncRepository<Product>>();
+            _mockProductRepository = new Mock<IProductRepository>();
             _mockCategoryRepository = new Mock<IAsyncRepository<Category>>();
         }
 

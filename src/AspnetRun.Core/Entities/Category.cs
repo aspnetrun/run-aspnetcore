@@ -15,7 +15,6 @@ namespace AspnetRun.Core.Entities
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public byte[] Picture { get; set; }
-
         public ICollection<Product> Products { get; private set; }
 
         public static Category Create(int categoryId, string name, string description = null)
@@ -26,7 +25,6 @@ namespace AspnetRun.Core.Entities
                 CategoryName = name,
                 Description = description
             };
-
             return category;
         }
 
@@ -37,7 +35,6 @@ namespace AspnetRun.Core.Entities
                 Products.Add(Product.Create(productId, this.Id, productName));
                 return;
             }
-
             var existingProduct = Products.FirstOrDefault(p => p.Id == productId);
         }
     }
