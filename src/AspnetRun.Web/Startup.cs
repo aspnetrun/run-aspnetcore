@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
+using AspnetRun.Application.UseCases.GetProductsByCategory;
 using AspnetRun.Core;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Logging;
@@ -12,6 +13,7 @@ using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Web.HealthChecks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.Services;
+using AspnetRun.Web.UseCases.GetProduct;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +58,11 @@ namespace AspnetRun.Web
             services.AddHttpContextAccessor();
             services.AddHealthChecks()
                 .AddCheck<IndexPageHealthCheck>("home_page_health_check");
+
+
+            // use case design
+            services.AddTransient<GetProductService>();
+            services.AddScoped<IGetProductsByCategoryUseCase, GetProductsByCategoryUseCase>();            
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
