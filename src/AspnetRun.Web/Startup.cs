@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AspnetRun.Application.Infrastructure.AutoMapper;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
 using AspnetRun.Application.UseCases.GetProductsByCategory;
@@ -43,8 +45,10 @@ namespace AspnetRun.Web
 
             ConfigureDatabases(services);
 
-            services.AddAutoMapper();
-            
+            //services.AddAutoMapper();
+            // Add AutoMapper
+            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
+
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
 

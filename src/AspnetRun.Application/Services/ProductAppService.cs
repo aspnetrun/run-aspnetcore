@@ -14,17 +14,21 @@ namespace AspnetRun.Application.Services
     public class ProductAppService : IProductAppService
     {
         private readonly IProductRepository _productRepository;
+        
+        // northwind e göre eklendi
+        private readonly IMapper _mapper;
 
-        public ProductAppService(IProductRepository productRepository)
+        public ProductAppService(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-        }       
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
 
         public async Task<IEnumerable<ProductDto>> GetProductList()
         {
-
             var productList = await _productRepository.GetProductListAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            var mapped = _mapper.Map<IEnumerable<ProductDto>>(productList);
+            // var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
             return mapped;
         }
 
