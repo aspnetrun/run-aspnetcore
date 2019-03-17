@@ -30,13 +30,12 @@ namespace AspnetRun.Infrastructure.Repository
             return await _dbContext.Set<T>().AsNoTracking().Where(predicate).ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, object> include = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string include = null, bool disableTracking = true)
         {
             IQueryable<T> query = _dbContext.Set<T>();
             if (disableTracking) query = query.AsNoTracking();
-
-            // TODO FIX : add include word
-            //if (include != null) query = include(query);
+            
+            if (!string.IsNullOrWhiteSpace(include)) query = query.Include(include);
 
             if (predicate != null) query = query.Where(predicate);
 
@@ -48,7 +47,7 @@ namespace AspnetRun.Infrastructure.Repository
         public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
-        }        
+        }
 
         public async Task<T> AddAsync(T entity)
         {

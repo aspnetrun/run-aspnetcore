@@ -14,7 +14,7 @@ namespace AspnetRun.Core.Interfaces
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, object> include = null, //       TODO FIX : includeble -- Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+            string include = null,
             bool disableTracking = true);
 
         //Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec);
