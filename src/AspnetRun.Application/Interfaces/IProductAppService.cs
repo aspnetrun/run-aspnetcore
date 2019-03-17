@@ -8,8 +8,8 @@ namespace AspnetRun.Application.Interfaces
 {
     public interface IProductAppService
     {
-        Task<IEnumerable<ProductDto>> GetProductList();
-        Task<IEnumerable<ProductDto>> GetProductByName(string productName);
-        Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId);
+        Task<IEnumerable<ProductOutput>> GetProductList();
+        Task<IEnumerable<ProductOutput>> GetProductByName(string productName);
+        Task<IEnumerable<ProductOutput>> GetProductByCategory(int categoryId);
     }
 }
