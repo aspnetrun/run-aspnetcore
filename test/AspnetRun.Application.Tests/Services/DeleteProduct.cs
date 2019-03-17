@@ -36,7 +36,7 @@ namespace AspnetRun.Application.Tests.Services
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product1);
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product2);
 
-            var productService = new ProductAppService(_mockProductRepository.Object, null);
+            var productService = new ProductAppService(_mockProductRepository.Object);
             var productList = productService.GetProductList();
 
             _mockProductRepository.Verify(x => x.ListAllAsync(), Times.Once);            

@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using AspnetRun.Application.Infrastructure.AutoMapper;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Application.Services;
-using AspnetRun.Application.UseCases.GetProductsByCategory;
 using AspnetRun.Core;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Logging;
@@ -15,12 +8,10 @@ using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Web.HealthChecks;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.Services;
-using AspnetRun.Web.UseCases.GetProduct;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,28 +36,24 @@ namespace AspnetRun.Web
 
             ConfigureDatabases(services);
 
-            //services.AddAutoMapper();
             // Add AutoMapper
-            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
+            services.AddAutoMapper();
 
+            // Add Data Layer
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            // Add Application Layer
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IProductRazorService, ProductRazorService>();
 
+            // Add Infrastructure Layer
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-
             services.Configure<AspnetRunSettings>(Configuration);
 
             services.AddHttpContextAccessor();
             services.AddHealthChecks()
-                .AddCheck<IndexPageHealthCheck>("home_page_health_check");
-
-
-            // use case design
-            services.AddTransient<GetProductService>();
-            services.AddScoped<IGetProductsByCategoryUseCase, GetProductsByCategoryUseCase>();            
+                .AddCheck<IndexPageHealthCheck>("home_page_health_check");            
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 

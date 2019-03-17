@@ -7,6 +7,7 @@ using System.Text;
 
 namespace AspnetRun.Application.Mapper
 {
+    // The best implementation of AutoMapper for class libraries - https://stackoverflow.com/questions/26458731/how-to-configure-auto-mapper-in-class-library-project
     public class ObjectMapper
     {
         public static IMapper Mapper
@@ -25,7 +26,8 @@ namespace AspnetRun.Application.Mapper
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Product, ProductDto>();
+                cfg.CreateMap<Product, ProductDto>()
+                    .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName));
             });
         }
     }

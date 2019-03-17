@@ -1,5 +1,4 @@
 ﻿using AspnetRun.Application.Interfaces;
-using AspnetRun.Application.UseCases.GetProductsByCategory;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
