@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Interfaces
 {
-    public interface IProductRazorService
+    public interface IProductPageService
     {
         Task<IEnumerable<ProductViewModel>> GetProducts();
     }

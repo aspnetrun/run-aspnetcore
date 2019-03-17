@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
 {
-    public class ProductRazorService : IProductRazorService
+    public class ProductPageService : IProductPageService
     {
         private readonly IProductAppService _productAppService;
-        private readonly ILogger<ProductRazorService> _logger;
+        private readonly ILogger<ProductPageService> _logger;
         private readonly IMapper _mapper;
 
-        public ProductRazorService(IProductAppService productAppService, ILogger<ProductRazorService> logger, IMapper mapper)
+        public ProductPageService(IProductAppService productAppService, ILogger<ProductPageService> logger, IMapper mapper)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

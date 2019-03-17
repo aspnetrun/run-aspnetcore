@@ -45,7 +45,7 @@ namespace AspnetRun.Web
 
             // Add Application Layer
             services.AddScoped<IProductAppService, ProductAppService>();
-            services.AddScoped<IProductRazorService, ProductRazorService>();
+            services.AddScoped<IProductPageService, ProductPageService>();
 
             // Add Infrastructure Layer
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
