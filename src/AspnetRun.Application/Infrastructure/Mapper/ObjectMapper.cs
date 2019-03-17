@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspnetRun.Application.Mapper
+namespace AspnetRun.Application.Infrastructure.Mapper
 {
     // The best implementation of AutoMapper for class libraries - https://stackoverflow.com/questions/26458731/how-to-configure-auto-mapper-in-class-library-project
     public class ObjectMapper

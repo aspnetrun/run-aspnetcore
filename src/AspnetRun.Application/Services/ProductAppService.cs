@@ -1,12 +1,9 @@
 ﻿using AspnetRun.Application.Dtos;
+using AspnetRun.Application.Infrastructure.Mapper;
 using AspnetRun.Application.Interfaces;
-using AspnetRun.Application.Mapper;
-using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
-using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
