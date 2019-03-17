@@ -1,6 +1,8 @@
 ﻿using AspnetRun.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,8 +10,16 @@ namespace AspnetRun.Core.Interfaces
 {
     public interface IAsyncRepository<T> where T : BaseEntity
     {
+        Task<IReadOnlyList<T>> GetAllAsync();
+        Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            Func<IQueryable<T>, object> include = null, //       TODO FIX : includeble -- Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+            bool disableTracking = true);
+
+        //Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec);
         Task<T> GetByIdAsync(int id);
-        Task<IReadOnlyList<T>> ListAllAsync();
+
         // Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);

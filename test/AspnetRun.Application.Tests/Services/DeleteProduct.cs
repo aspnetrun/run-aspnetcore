@@ -39,7 +39,7 @@ namespace AspnetRun.Application.Tests.Services
             var productService = new ProductAppService(_mockProductRepository.Object);
             var productList = productService.GetProductList();
 
-            _mockProductRepository.Verify(x => x.ListAllAsync(), Times.Once);            
+            _mockProductRepository.Verify(x => x.GetAllAsync(), Times.Once);            
         }
 
 
