@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspnetRun.Core
+namespace AspnetRun.Core.Exceptions
 {
     public class CoreException : Exception
     {
