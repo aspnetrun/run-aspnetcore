@@ -28,6 +28,7 @@ namespace AspnetRun.Application.Infrastructure.Mapper
             {
                 cfg.CreateMap<Product, ProductDto>()
                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName));
+                cfg.CreateMap<Category, CategoryDto>();
             });
         }
     }

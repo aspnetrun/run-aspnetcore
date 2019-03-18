@@ -13,6 +13,7 @@ namespace AspnetRun.Web.Mapper
         public AspnetRunProfile()
         {
             CreateMap<ProductDto, ProductViewModel>();
+            CreateMap<CategoryDto, CategoryViewModel>();
         }
     }
 }

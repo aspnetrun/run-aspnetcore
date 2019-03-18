@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace AspnetRun.Application.Dtos
+namespace AspnetRun.Web.ViewModels
 {
-    public class CategoryDto : BaseDto
+    public class CategoryViewModel : BaseViewModel
     {
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public byte[] Picture { get; set; }
-        public ICollection<ProductDto> Products { get; set; }
+        public ICollection<ProductViewModel> Products { get; set; }
     }
 }

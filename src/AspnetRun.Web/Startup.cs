@@ -26,7 +26,7 @@ namespace AspnetRun.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }             
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,10 +42,14 @@ namespace AspnetRun.Web
             // Add Data Layer
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             // Add Application Layer
             services.AddScoped<IProductAppService, ProductAppService>();
-            services.AddScoped<IProductPageService, ProductPageService>();
+            services.AddScoped<ICategoryAppService, CategoryAppService>();
+
+            // Add Web Layer
+            services.AddScoped<IIndexPageService, IndexPageService>();
 
             // Add Infrastructure Layer
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));

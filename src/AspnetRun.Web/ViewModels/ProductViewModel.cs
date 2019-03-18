@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.ViewModels
 {
-    public class ProductViewModel
+    public class ProductViewModel : BaseViewModel
     {
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }

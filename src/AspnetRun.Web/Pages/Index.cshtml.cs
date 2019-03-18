@@ -10,18 +10,21 @@ namespace AspnetRun.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IProductPageService _productRazorService;
+        private readonly IIndexPageService _indexPageService;
 
-        public IndexModel(IProductPageService productRazorService)
+        public IndexModel(IIndexPageService productRazorService)
         {
-            _productRazorService = productRazorService ?? throw new ArgumentNullException(nameof(productRazorService));
+            _indexPageService = productRazorService ?? throw new ArgumentNullException(nameof(productRazorService));
         }
 
         public IEnumerable<ProductViewModel> ProductModel { get; set; } = new List<ProductViewModel>();
+        public CategoryViewModel CategoryModel { get; set; } = new CategoryViewModel();
 
         public async Task<IActionResult> OnGet()
         {
-            ProductModel = await _productRazorService.GetProducts();
+            CategoryModel = await _indexPageService.GetCategoryWithProducts(1);
+
+            ProductModel = await _indexPageService.GetProducts();
             return Page();
         }
     }
