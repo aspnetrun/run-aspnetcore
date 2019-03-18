@@ -2,9 +2,7 @@
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
@@ -15,13 +13,11 @@ namespace AspnetRun.Infrastructure.Repository
         {
         }
 
-        public Task<IEnumerable<Category>> GetCategoryWithProductsAsync(int categoryId)
+        public async Task<Category> GetCategoryWithProductsAsync(int categoryId)
         {
             var spec = new CategoryWithProductsSpecification(categoryId);
-
-
-
-            throw new NotImplementedException();
+            var category = (await GetAsync(spec)).FirstOrDefault();
+            return category;
         }
     }
 }

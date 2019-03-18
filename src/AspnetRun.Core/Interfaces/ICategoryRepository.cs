@@ -8,7 +8,7 @@ namespace AspnetRun.Core.Interfaces
 {
     public interface ICategoryRepository : IAsyncRepository<Category>
     {
-        Task<IEnumerable<Category>> GetCategoryWithProductsAsync(int categoryId);
+        Task<Category> GetCategoryWithProductsAsync(int categoryId);
 
     }
 }
