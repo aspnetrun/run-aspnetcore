@@ -25,6 +25,21 @@ namespace AspnetRun.Infrastructure.Repository
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
+        public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
+
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+        }
+
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dbContext.Set<T>().AsNoTracking().Where(predicate).ToListAsync();
@@ -80,6 +95,6 @@ namespace AspnetRun.Infrastructure.Repository
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-        }        
+        }       
     }
 }
