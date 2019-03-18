@@ -37,5 +37,10 @@ namespace AspnetRun.Application.Services
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
             return mapped;
         }
+
+        public async Task Insert(ProductDto product)
+        {
+            // validation should be handled in here 
+        }
     }
 }
