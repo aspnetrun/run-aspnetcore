@@ -18,14 +18,16 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IEnumerable<Product>> GetProductListAsync()
         {
-            return await this.GetAllAsync();
+            return await GetAllAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
         {
-            return await _dbContext.Products
-                .Where(x => x.ProductName.Contains(productName))
-                .ToListAsync();
+            return await GetAsync(x => x.ProductName.Contains(productName));
+
+            //return await _dbContext.Products
+            //    .Where(x => x.ProductName.Contains(productName))
+            //    .ToListAsync();
         }
         
         public async Task<IEnumerable<Product>> GetProductByCategoryAsync(int categoryId)
@@ -33,6 +35,6 @@ namespace AspnetRun.Infrastructure.Repository
             return await _dbContext.Products
                 .Where(x => x.CategoryId==categoryId)
                 .ToListAsync();
-        }        
+        }
     }
 }

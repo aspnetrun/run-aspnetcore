@@ -11,7 +11,7 @@ namespace AspnetRun.Core.Entities
         {
             Products = new HashSet<Product>();
         }
-        
+
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public byte[] Picture { get; set; }
@@ -33,9 +33,7 @@ namespace AspnetRun.Core.Entities
             if (!Products.Any(p => p.Id == productId))
             {
                 Products.Add(Product.Create(productId, this.Id, productName));
-                return;
             }
-            var existingProduct = Products.FirstOrDefault(p => p.Id == productId);
         }
     }
 }
