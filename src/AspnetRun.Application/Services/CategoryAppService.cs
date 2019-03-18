@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Dtos;
 using AspnetRun.Application.Infrastructure.Mapper;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class CategoryAppService : ICategoryAppService
+    public class CategoryAppService : AspnetRunAppService<Category>, ICategoryAppService
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryAppService(ICategoryRepository categoryRepository)
+        public CategoryAppService(IAsyncRepository<Category> repository, IAppLogger<Category> logger, ICategoryRepository categoryRepository)
+            : base(repository, logger)
         {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }

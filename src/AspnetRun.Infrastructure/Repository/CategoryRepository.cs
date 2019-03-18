@@ -10,11 +10,11 @@ namespace AspnetRun.Infrastructure.Repository
     public class CategoryRepository : AspnetRunRepository<Category>, ICategoryRepository
     {
         public CategoryRepository(AspnetRunContext dbContext) : base(dbContext)
-        {
+        {            
         }
 
         public async Task<Category> GetCategoryWithProductsAsync(int categoryId)
-        {
+        {            
             var spec = new CategoryWithProductsSpecification(categoryId);
             var category = (await GetAsync(spec)).FirstOrDefault();
             return category;

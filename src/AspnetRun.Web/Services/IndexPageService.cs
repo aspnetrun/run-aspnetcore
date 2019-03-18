@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Application.Interfaces;
+using AspnetRun.Core.Entities;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
@@ -12,6 +13,8 @@ namespace AspnetRun.Web.Services
 {
     public class IndexPageService : IIndexPageService
     {
+        private readonly IAspnetRunAppService<Product> _aspnetRunAppService;
+
         private readonly IProductAppService _productAppService;
         private readonly ICategoryAppService _categoryAppService;
         private readonly ILogger<IndexPageService> _logger;
@@ -26,7 +29,7 @@ namespace AspnetRun.Web.Services
         }
        
         public async Task<IEnumerable<ProductViewModel>> GetProducts()
-        {
+        {            
             var list = await _productAppService.GetProductList();
             var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
             return mapped;

@@ -3,6 +3,7 @@ using AutoMapper;
 
 namespace AspnetRun.Application.Dtos
 {
+    
     public class ProductDto : BaseDto
     {
         public string ProductName { get; set; }

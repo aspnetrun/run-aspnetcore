@@ -27,12 +27,12 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).ToListAsync();
+            return await ApplySpecification(spec).AsNoTracking().ToListAsync();
         }
 
         public async Task<int> CountAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).CountAsync();
+            return await ApplySpecification(spec).AsNoTracking().CountAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)

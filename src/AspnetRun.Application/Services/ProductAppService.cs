@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Dtos;
 using AspnetRun.Application.Infrastructure.Mapper;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class ProductAppService : IProductAppService
+    public class ProductAppService : AspnetRunAppService<Product>, IProductAppService
     {
         private readonly IProductRepository _productRepository;
 
-        public ProductAppService(IProductRepository productRepository)
+        public ProductAppService(IAsyncRepository<Product> repository, IAppLogger<Product> logger, IProductRepository productRepository)
+            : base(repository, logger)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
         }
@@ -28,7 +30,7 @@ namespace AspnetRun.Application.Services
         {
             var productList = await _productRepository.GetProductByCategoryAsync(categoryId);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
-            return mapped;            
+            return mapped;
         }
 
         public async Task<IEnumerable<ProductDto>> GetProductByName(string productName)
@@ -40,7 +42,17 @@ namespace AspnetRun.Application.Services
 
         public async Task Insert(ProductDto product)
         {
+            // Validate(product);
+            //this.ValidateProduct(productId, product);
+            _logger.LogInformation($"Product successfully added.");
+
             // validation should be handled in here 
+        }
+
+        private void ValidateProduct(Guid productId, Product product)
+        {
+            if (product == null)
+                throw new ApplicationException(String.Format("Product was not found with this Id: {0}", productId));
         }
     }
 }
