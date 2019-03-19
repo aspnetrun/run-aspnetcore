@@ -9,6 +9,10 @@ namespace AspnetRun.Application.Interfaces
 {
     public interface IAspnetRunAppService<TEntity, TEntityDto> where TEntity : BaseEntity where TEntityDto : BaseDto
     {
-        Task<TEntity> Add(TEntityDto entityDto);
+        Task<TEntityDto> GetById(int entityId);
+        Task<IEnumerable<TEntityDto>> GetAll();
+        Task<TEntityDto> Add(TEntityDto entityDto);
+        Task Update(TEntityDto entityDto);
+        Task Delete(TEntityDto entityDto);
     }
 }

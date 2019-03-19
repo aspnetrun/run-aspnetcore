@@ -27,7 +27,7 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
-        public override Task<Category> Add(CategoryDto entityDto)
+        public override Task<CategoryDto> Add(CategoryDto entityDto)
         {
             return base.Add(entityDto);
         }

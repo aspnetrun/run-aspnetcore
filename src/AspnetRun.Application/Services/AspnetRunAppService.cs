@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
+    // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
     public class AspnetRunAppService<TEntity, TEntityDto> : IAspnetRunAppService<TEntity, TEntityDto> where TEntity : BaseEntity where TEntityDto : BaseDto
-    {
-        // TODO : validation , authorization, logging etc. -- cross cutting activities in here.
+    {        
         protected readonly IAsyncRepository<TEntity> _repository;
         protected readonly IAppLogger<TEntity> _logger;
 
@@ -21,10 +21,24 @@ namespace AspnetRun.Application.Services
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-
-        public virtual async Task<TEntity> Add(TEntityDto entityDto)
+        
+        public virtual async Task<TEntityDto> GetById(int entityId)
         {
-            var existingEntity = _repository.GetByIdAsync(entityDto.Id); 
+            var entity = await _repository.GetByIdAsync(entityId);
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntityDto>(entity);
+            return mappedEntity;
+        }
+
+        public virtual async Task<IEnumerable<TEntityDto>> GetAll()
+        {
+            var entityList = await _repository.GetAllAsync();
+            var mappedEntityList = ObjectMapper.Mapper.Map<IEnumerable<TEntityDto>>(entityList);
+            return mappedEntityList;
+        }
+
+        public virtual async Task<TEntityDto> Add(TEntityDto entityDto)
+        {
+            var existingEntity = await _repository.GetByIdAsync(entityDto.Id); 
             if (existingEntity != null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
 
@@ -33,72 +47,34 @@ namespace AspnetRun.Application.Services
                 throw new ApplicationException($"Entity could not be mapped.");
 
             var newEntity = await _repository.AddAsync(mappedEntity);
-            return newEntity;
+            var newMappedEntity = ObjectMapper.Mapper.Map<TEntityDto>(newEntity);
+            return newMappedEntity;
         }
 
-        // TODO : here - try to add these values in here
+        public virtual async Task Update(TEntityDto entityDto)
+        {
+            var existingEntity = await _repository.GetByIdAsync(entityDto.Id);
+            if (existingEntity == null)
+                throw new ApplicationException($"{entityDto.ToString()} with this id not exists");
 
-        //public CustomerDto Add(CustomerDto customerDto)
-        //{
-        //    ISpecification<Customer> alreadyRegisteredSpec =
-        //        new CustomerAlreadyRegisteredSpec(customerDto.Email);
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(entityDto);
+            if (mappedEntity == null)
+                throw new ApplicationException($"Entity could not be mapped.");
 
-        //    Customer existingCustomer = this.customerRepository.FindOne(alreadyRegisteredSpec);
+            await _repository.UpdateAsync(mappedEntity);
+        }
 
-        //    if (existingCustomer != null)
-        //        throw new Exception("Customer with this email already exists");
+        public virtual async Task Delete(TEntityDto entityDto)
+        {
+            var existingEntity = await _repository.GetByIdAsync(entityDto.Id);
+            if (existingEntity == null)
+                throw new ApplicationException($"{entityDto.ToString()} with this id not exists");
 
-        //    Country country = this.countryRepository.FindById(customerDto.CountryId);
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(entityDto);
+            if (mappedEntity == null)
+                throw new ApplicationException($"Entity could not be mapped.");
 
-        //    Customer customer =
-        //        Customer.Create(customerDto.FirstName, customerDto.LastName, customerDto.Email, country);
-
-        //    this.customerRepository.Add(customer);
-        //    this.unitOfWork.Commit();
-
-        //    return AutoMapper.Mapper.Map<Customer, CustomerDto>(customer);
-        //}
-
-        //public void Update(CustomerDto customerDto)
-        //{
-        //    if (customerDto.Id == Guid.Empty)
-        //        throw new Exception("Id can't be empty");
-
-        //    ISpecification<Customer> registeredSpec =
-        //        new CustomerRegisteredSpec(customerDto.Id);
-
-        //    Customer customer = this.customerRepository.FindOne(registeredSpec);
-
-        //    if (customer == null)
-        //        throw new Exception("No such customer exists");
-
-        //    customer.ChangeEmail(customerDto.Email);
-        //    this.unitOfWork.Commit();
-        //}
-
-        //public void Remove(Guid customerId)
-        //{
-        //    ISpecification<Customer> registeredSpec =
-        //        new CustomerRegisteredSpec(customerId);
-
-        //    Customer customer = this.customerRepository.FindOne(registeredSpec);
-
-        //    if (customer == null)
-        //        throw new Exception("No such customer exists");
-
-        //    this.customerRepository.Remove(customer);
-        //    this.unitOfWork.Commit();
-        //}
-
-        //public CustomerDto Get(Guid customerId)
-        //{
-        //    ISpecification<Customer> registeredSpec =
-        //        new CustomerRegisteredSpec(customerId);
-
-        //    Customer customer = this.customerRepository.FindOne(registeredSpec);
-
-        //    return AutoMapper.Mapper.Map<Customer, CustomerDto>(customer);
-        //}
-
+            await _repository.DeleteAsync(mappedEntity);
+        }
     }
 }
