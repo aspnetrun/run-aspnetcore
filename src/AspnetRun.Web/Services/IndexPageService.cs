@@ -1,4 +1,5 @@
-﻿using AspnetRun.Application.Interfaces;
+﻿using AspnetRun.Application.Dtos;
+using AspnetRun.Application.Interfaces;
 using AspnetRun.Core.Entities;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
@@ -13,7 +14,7 @@ namespace AspnetRun.Web.Services
 {
     public class IndexPageService : IIndexPageService
     {
-        private readonly IAspnetRunAppService<Product> _aspnetRunAppService;
+        private readonly IAspnetRunAppService<Product, ProductDto> _aspnetRunAppService;
 
         private readonly IProductAppService _productAppService;
         private readonly ICategoryAppService _categoryAppService;

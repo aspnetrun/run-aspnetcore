@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class ProductAppService : AspnetRunAppService<Product>, IProductAppService
+    public class ProductAppService : AspnetRunAppService<Product, ProductDto>, IProductAppService
     {
         private readonly IProductRepository _productRepository;
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class CategoryAppService : AspnetRunAppService<Category>, ICategoryAppService
+    public class CategoryAppService : AspnetRunAppService<Category, CategoryDto>, ICategoryAppService
     {
         private readonly ICategoryRepository _categoryRepository;
 
@@ -25,6 +25,11 @@ namespace AspnetRun.Application.Services
             var category = await _categoryRepository.GetCategoryWithProductsAsync(categoryId);
             var mapped = ObjectMapper.Mapper.Map<CategoryDto>(category);
             return mapped;
+        }
+
+        public override Task<Category> Add(CategoryDto entityDto)
+        {
+            return base.Add(entityDto);
         }
     }
 }

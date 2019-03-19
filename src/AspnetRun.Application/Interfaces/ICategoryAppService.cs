@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Interfaces
 {
-    public interface ICategoryAppService : IAspnetRunAppService<Category>
+    public interface ICategoryAppService : IAspnetRunAppService<Category, CategoryDto>
     {
         Task<CategoryDto> GetCategoryWithProductsAsync(int categoryId);
     }
