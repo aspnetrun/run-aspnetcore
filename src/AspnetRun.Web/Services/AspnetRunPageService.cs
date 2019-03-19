@@ -15,9 +15,9 @@ namespace AspnetRun.Web.Services
     public class AspnetRunPageService<TEntity, TEntityDto, TEntityViewModel> : IAspnetRunPageService<TEntity, TEntityDto, TEntityViewModel> 
         where TEntity : BaseEntity where TEntityDto : BaseDto where TEntityViewModel : BaseViewModel
     {
-        private readonly IAspnetRunAppService<TEntity, TEntityDto> _aspnetRunAppService;
-        private readonly IMapper _mapper;
-        private readonly ILogger<TEntityViewModel> _logger;
+        protected readonly IAspnetRunAppService<TEntity, TEntityDto> _aspnetRunAppService;
+        protected readonly IMapper _mapper;
+        protected readonly ILogger<TEntityViewModel> _logger;
 
         public AspnetRunPageService(IAspnetRunAppService<TEntity, TEntityDto> aspnetRunAppService, IMapper mapper, ILogger<TEntityViewModel> logger)
         {

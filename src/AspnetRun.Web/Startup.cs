@@ -39,7 +39,7 @@ namespace AspnetRun.Web
             // Add AutoMapper
             services.AddAutoMapper();
 
-            // Add Data Layer
+            // Add Infrastructure Layer
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -59,7 +59,7 @@ namespace AspnetRun.Web
 
             services.AddHttpContextAccessor();
             services.AddHealthChecks()
-                .AddCheck<IndexPageHealthCheck>("home_page_health_check");            
+                .AddCheck<IndexPageHealthCheck>("home_page_health_check");
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
