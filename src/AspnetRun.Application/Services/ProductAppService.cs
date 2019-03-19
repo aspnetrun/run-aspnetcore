@@ -1,5 +1,5 @@
 ﻿using AspnetRun.Application.Dtos;
-using AspnetRun.Application.Infrastructure.Mapper;
+using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Interfaces;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
