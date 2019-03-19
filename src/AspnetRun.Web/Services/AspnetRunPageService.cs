@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
 {
-    public class AspnetRunPageService<TEntity, TEntityDto, TEntityViewModel> : IAspnetRunPageService where TEntity : BaseEntity where TEntityDto : BaseDto where TEntityViewModel : BaseViewModel
+    public class AspnetRunPageService<TEntity, TEntityDto, TEntityViewModel> : IAspnetRunPageService<TEntity, TEntityDto, TEntityViewModel> 
+        where TEntity : BaseEntity where TEntityDto : BaseDto where TEntityViewModel : BaseViewModel
     {
         private readonly IAspnetRunAppService<TEntity, TEntityDto> _aspnetRunAppService;
         private readonly IMapper _mapper;
