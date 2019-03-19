@@ -45,10 +45,12 @@ namespace AspnetRun.Web
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             // Add Application Layer
+            services.AddScoped(typeof(IAspnetRunAppService<,>), typeof(AspnetRunAppService<,>));
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<ICategoryAppService, CategoryAppService>();
 
             // Add Web Layer
+            services.AddScoped(typeof(IAspnetRunPageService<,,>), typeof(AspnetRunPageService<,,>));
             services.AddScoped<IIndexPageService, IndexPageService>();
 
             // Add Infrastructure Layer
