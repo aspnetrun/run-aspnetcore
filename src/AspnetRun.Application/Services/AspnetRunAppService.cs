@@ -46,7 +46,9 @@ namespace AspnetRun.Application.Services
             if (mappedEntity == null)
                 throw new ApplicationException($"Entity could not be mapped.");
 
-            var newEntity = await _repository.AddAsync(mappedEntity);
+            var newEntity = await _repository.AddAsync(mappedEntity);            
+            _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
+
             var newMappedEntity = ObjectMapper.Mapper.Map<TEntityDto>(newEntity);
             return newMappedEntity;
         }
@@ -62,6 +64,7 @@ namespace AspnetRun.Application.Services
                 throw new ApplicationException($"Entity could not be mapped.");
 
             await _repository.UpdateAsync(mappedEntity);
+            _logger.LogInformation($"Entity successfully updated - AspnetRunAppService");
         }
 
         public virtual async Task Delete(TEntityDto entityDto)
@@ -75,6 +78,7 @@ namespace AspnetRun.Application.Services
                 throw new ApplicationException($"Entity could not be mapped.");
 
             await _repository.DeleteAsync(mappedEntity);
+            _logger.LogInformation($"Entity successfully deleted - AspnetRunAppService");
         }
     }
 }
