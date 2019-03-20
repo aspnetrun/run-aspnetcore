@@ -4,44 +4,5 @@
     ViewData["Title"] = "Home page";
 }
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">UnitPrice</th>
-            <th scope="col">CategoryId</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model.ProductList)
-        {
-            <tr>
-                <th scope="row">@product.Id</th>
-                <td>@product.ProductName</td>
-                <td>@product.UnitPrice</td>
-                <td>@product.CategoryId</td>
-                <td>
-                    <a class="btn"
-                       asp-page="./Detail"
-                       asp-route-productId="@product.Id">
-                        Details
-                    </a>
-                    <a class="btn"
-                       asp-page="./Edit"
-                       asp-route-productId="@product.Id">
-                        Edit
-                    </a>
-                    <a class="btn"
-                       asp-page="./Delete"
-                       asp-route-productId="@product.Id">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 

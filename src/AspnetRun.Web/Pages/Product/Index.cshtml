@@ -30,7 +30,7 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">UnitPrice</th>
-            <th scope="col">CategoryId</th>
+            <th scope="col">Category</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -41,10 +41,10 @@
                 <th scope="row">@product.Id</th>
                 <td>@product.ProductName</td>
                 <td>@product.UnitPrice</td>
-                <td>@product.CategoryId</td>
+                <td>@product.Category.CategoryName</td>
                 <td>
                     <a class="btn"
-                       asp-page="./Detail"
+                       asp-page="./Details"
                        asp-route-productId="@product.Id">
                         Details
                     </a>

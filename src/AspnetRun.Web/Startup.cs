@@ -85,6 +85,7 @@ namespace AspnetRun.Web
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
+            services.AddScoped<IProductPageService, ProductPageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();

@@ -1,5 +1,6 @@
 ﻿using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,12 +19,18 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IEnumerable<Product>> GetProductListAsync()
         {
-            return await GetAllAsync();
+            // return await GetAllAsync();
+
+            var spec = new ProductWithCategorySpecification();
+            return await GetAsync(spec);
         }
 
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
         {
-            return await GetAsync(x => x.ProductName.Contains(productName));
+            var spec = new ProductWithCategorySpecification(productName);
+            return await GetAsync(spec);
+
+            // return await GetAsync(x => x.ProductName.ToLower().Contains(productName.ToLower()));
 
             //return await _dbContext.Products
             //    .Where(x => x.ProductName.Contains(productName))

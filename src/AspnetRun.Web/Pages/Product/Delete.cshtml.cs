@@ -24,14 +24,14 @@ namespace AspnetRun.Web.Pages.Product
         [BindProperty]
         public ProductViewModel Product { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? productId)
         {
-            if (id == null)
+            if (productId == null)
             {
                 return NotFound();
             }
 
-            Product = await _productPageService.GetProductById(id.Value);
+            Product = await _productPageService.GetProductById(productId.Value);
             if (Product == null)
             {
                 return NotFound();
