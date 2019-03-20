@@ -86,12 +86,6 @@ namespace AspnetRun.Application.Services
             var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
             if (existingEntity != null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
-        }
-      
-        private void ValidateProduct(Guid productId, Product product)
-        {
-            if (product == null)
-                throw new ApplicationException(String.Format("Product was not found with this Id: {0}", productId));
-        }
+        }             
     }
 }

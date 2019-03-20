@@ -46,12 +46,31 @@ namespace AspnetRun.Web.Services
                 throw new Exception($"Entity could not be mapped.");
 
             var entityDto = await _productAppService.Create(mapped);
-            _logger.LogInformation($"Entity successfully added - AspnetRunPageService");
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
 
             var mappedViewModel = _mapper.Map<ProductViewModel>(entityDto);
             return mappedViewModel;
         }
 
+        public async Task UpdateProduct(ProductViewModel productViewModel)
+        {
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            await _productAppService.Update(mapped);
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
+        }
+
+        public async Task DeleteProduct(ProductViewModel productViewModel)
+        {
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            await _productAppService.Delete(mapped);
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
+        }
 
     }
 }
