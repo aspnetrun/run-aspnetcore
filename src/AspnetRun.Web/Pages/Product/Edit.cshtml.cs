@@ -15,11 +15,11 @@ namespace AspnetRun.Web.Pages.Product
 {
     public class EditModel : PageModel
     {
-        private readonly IIndexPageService _indexPageService;
+        private readonly IProductPageService _productPageService;
 
-        public EditModel(IIndexPageService indexPageService)
+        public EditModel(IProductPageService productPageService)
         {
-            _indexPageService = indexPageService ?? throw new ArgumentNullException(nameof(indexPageService));
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
         }
 
         [BindProperty]
@@ -30,16 +30,15 @@ namespace AspnetRun.Web.Pages.Product
             if (id == null)
             {
                 return NotFound();
-            }           
+            }
 
-            Product = await _context.Products
-                .Include(p => p.Category).FirstOrDefaultAsync(m => m.Id == id);
-
+            Product = await _productPageService.GetProductById(id.Value);
             if (Product == null)
             {
                 return NotFound();
             }
-           ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
+            
+            ViewData["CategoryId"] = new SelectList(await _productPageService.GetCategories(), "Id", "CategoryName");
             return Page();
         }
 
@@ -49,12 +48,10 @@ namespace AspnetRun.Web.Pages.Product
             {
                 return Page();
             }
-
-            _context.Attach(Product).State = EntityState.Modified;
-
+            
             try
             {
-                await _context.SaveChangesAsync();
+                await _productPageService.UpdateProduct(Product);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,13 +64,13 @@ namespace AspnetRun.Web.Pages.Product
                     throw;
                 }
             }
-
             return RedirectToPage("./Index");
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            var product = _productPageService.GetProductById(id);
+            return product != null;            
         }
     }
 }

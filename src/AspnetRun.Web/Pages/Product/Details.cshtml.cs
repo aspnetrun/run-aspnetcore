@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using AspnetRun.Core.Entities;
-using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Web.Interfaces;
+using AspnetRun.Web.ViewModels;
 
 namespace AspnetRun.Web.Pages.Product
 {
     public class DetailsModel : PageModel
     {
-        private readonly AspnetRun.Infrastructure.Persistence.AspnetRunContext _context;
+        private readonly IProductPageService _productPageService;
 
-        public DetailsModel(AspnetRun.Infrastructure.Persistence.AspnetRunContext context)
+        public DetailsModel(IProductPageService productPageService)
         {
-            _context = context;
-        }
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
+        }       
 
-        public Product Product { get; set; }
+        public ProductViewModel Product { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +25,7 @@ namespace AspnetRun.Web.Pages.Product
                 return NotFound();
             }
 
-            Product = await _context.Products
-                .Include(p => p.Category).FirstOrDefaultAsync(m => m.Id == id);
-
+            Product = await _productPageService.GetProductById(id.Value);
             if (Product == null)
             {
                 return NotFound();

@@ -7,20 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AspnetRun.Core.Entities;
 using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Web.Interfaces;
+using AspnetRun.Web.ViewModels;
 
 namespace AspnetRun.Web.Pages.Product
 {
     public class DeleteModel : PageModel
     {
-        private readonly AspnetRun.Infrastructure.Persistence.AspnetRunContext _context;
+        private readonly IProductPageService _productPageService;
 
-        public DeleteModel(AspnetRun.Infrastructure.Persistence.AspnetRunContext context)
+        public DeleteModel(IProductPageService productPageService)
         {
-            _context = context;
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public ProductViewModel Product { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +31,7 @@ namespace AspnetRun.Web.Pages.Product
                 return NotFound();
             }
 
-            Product = await _context.Products
-                .Include(p => p.Category).FirstOrDefaultAsync(m => m.Id == id);
-
+            Product = await _productPageService.GetProductById(id.Value);
             if (Product == null)
             {
                 return NotFound();
@@ -46,14 +46,7 @@ namespace AspnetRun.Web.Pages.Product
                 return NotFound();
             }
 
-            Product = await _context.Products.FindAsync(id);
-
-            if (Product != null)
-            {
-                _context.Products.Remove(Product);
-                await _context.SaveChangesAsync();
-            }
-
+            await _productPageService.DeleteProduct(Product);          
             return RedirectToPage("./Index");
         }
     }

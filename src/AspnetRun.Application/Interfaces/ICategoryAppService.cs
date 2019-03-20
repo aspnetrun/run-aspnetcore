@@ -9,6 +9,6 @@ namespace AspnetRun.Application.Interfaces
 {
     public interface ICategoryAppService
     {
-        Task<CategoryDto> GetCategoryWithProductsAsync(int categoryId);
+        Task<IEnumerable<CategoryDto>> GetCategoryList();
     }
 }

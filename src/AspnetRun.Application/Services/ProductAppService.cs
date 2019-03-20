@@ -28,16 +28,23 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId)
+        public async Task<ProductDto> GetProductById(int productId)
         {
-            var productList = await _productRepository.GetProductByCategoryAsync(categoryId);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            var product = await _productRepository.GetByIdAsync(productId);
+            var mapped = ObjectMapper.Mapper.Map<ProductDto>(product);
             return mapped;
         }
 
         public async Task<IEnumerable<ProductDto>> GetProductByName(string productName)
         {
             var productList = await _productRepository.GetProductByNameAsync(productName);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            return mapped;
+        }
+
+        public async Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId)
+        {
+            var productList = await _productRepository.GetProductByCategoryAsync(categoryId);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
             return mapped;
         }
@@ -55,11 +62,11 @@ namespace AspnetRun.Application.Services
 
             var newMappedEntity = ObjectMapper.Mapper.Map<ProductDto>(newEntity);
             return newMappedEntity;
-        }      
+        }
 
         public async Task Update(ProductDto entityDto)
         {
-            ValidateProduct(entityDto);
+            ValidateProductIfNotExist(entityDto);
 
             var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
             if (mappedEntity == null)
@@ -71,7 +78,7 @@ namespace AspnetRun.Application.Services
 
         public async Task Delete(ProductDto entityDto)
         {
-            ValidateProduct(entityDto);
+            ValidateProductIfNotExist(entityDto);
 
             var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
             if (mappedEntity == null)
@@ -86,6 +93,14 @@ namespace AspnetRun.Application.Services
             var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
             if (existingEntity != null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
-        }             
+        }
+
+        private void ValidateProductIfNotExist(ProductDto entityDto)
+        {
+            var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
+            if (existingEntity == null)
+                throw new ApplicationException($"{entityDto.ToString()} with this id is not exists");
+        }
+
     }
 }

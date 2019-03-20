@@ -21,12 +21,12 @@ namespace AspnetRun.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<CategoryDto> GetCategoryWithProductsAsync(int categoryId)
+        public async Task<IEnumerable<CategoryDto>> GetCategoryList()
         {
-            var category = await _categoryRepository.GetCategoryWithProductsAsync(categoryId);
-            var mapped = ObjectMapper.Mapper.Map<CategoryDto>(category);
+            var category = await _categoryRepository.GetAllAsync();
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(category);
             return mapped;
-        }
+        }        
         
     }
 }

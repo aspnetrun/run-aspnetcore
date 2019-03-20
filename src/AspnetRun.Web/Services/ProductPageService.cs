@@ -1,11 +1,11 @@
-﻿using AspnetRun.Application.Interfaces;
+﻿using AspnetRun.Application.Dtos;
+using AspnetRun.Application.Interfaces;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
@@ -25,39 +25,72 @@ namespace AspnetRun.Web.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)
+        public async Task<IEnumerable<ProductViewModel>> GetProducts(string productName)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(productName))
+            {
+                var list = await _productAppService.GetProductList();
+                var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
+                return mapped;
+            }
+
+            var listByName = await _productAppService.GetProductByName(productName);
+            var mappedByName = _mapper.Map<IEnumerable<ProductViewModel>>(listByName);
+            return mappedByName;
         }
 
-        public Task DeleteProduct(ProductViewModel productViewModel)
+        public async Task<ProductViewModel> GetProductById(int productId)
         {
-            throw new NotImplementedException();
+            var product = await _productAppService.GetProductById(productId);
+            var mapped = _mapper.Map<ProductViewModel>(product);
+            return mapped;
         }
 
-        public Task<IEnumerable<CategoryViewModel>> GetCategories()
+        public async Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            var list = await _productAppService.GetProductByCategory(categoryId);
+            var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
+            return mapped;
         }
 
-        public Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId)
+        public async Task<IEnumerable<CategoryViewModel>> GetCategories()
         {
-            throw new NotImplementedException();
+            var list = await _categoryAppService.GetCategoryList();
+            var mapped = _mapper.Map<IEnumerable<CategoryViewModel>>(list);
+            return mapped;            
         }
 
-        public Task<IEnumerable<ProductViewModel>> GetProductById(int productId)
+        public async Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            var entityDto = await _productAppService.Create(mapped);
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
+
+            var mappedViewModel = _mapper.Map<ProductViewModel>(entityDto);
+            return mappedViewModel;
         }
 
-        public Task<IEnumerable<ProductViewModel>> GetProducts(string productName)
+        public async Task UpdateProduct(ProductViewModel productViewModel)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            await _productAppService.Update(mapped);
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
         }
 
-        public Task UpdateProduct(ProductViewModel productViewModel)
+        public async Task DeleteProduct(ProductViewModel productViewModel)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            await _productAppService.Delete(mapped);
+            _logger.LogInformation($"Entity successfully added - IndexPageService");
         }
     }
 }

@@ -15,5 +15,6 @@ namespace AspnetRun.Web.ViewModels
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
         public int? CategoryId { get; set; }
+        public CategoryViewModel Category { get; set; }
     }
 }

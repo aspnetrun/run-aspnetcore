@@ -14,16 +14,17 @@ namespace AspnetRun.Web.Pages.Product
 {
     public class CreateModel : PageModel
     {
-        private readonly IIndexPageService _indexPageService;
+        private readonly IProductPageService _productPageService;
 
-        public CreateModel(IIndexPageService indexPageService)
+        public CreateModel(IProductPageService productPageService)
         {
-            _indexPageService = indexPageService ?? throw new ArgumentNullException(nameof(indexPageService));
-        }       
+            _productPageService = productPageService ?? throw new ArgumentNullException(nameof(productPageService));
+        }
 
-        public IActionResult OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            // ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
+            var categories = await _productPageService.GetCategories();
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "CategoryName");
             return Page();
         }
 
@@ -37,7 +38,7 @@ namespace AspnetRun.Web.Pages.Product
                 return Page();
             }
 
-            Product = await _indexPageService.CreateProduct(Product);
+            Product = await _productPageService.CreateProduct(Product);
             return RedirectToPage("./Index");
         }
     }
