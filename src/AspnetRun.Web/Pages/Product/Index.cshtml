@@ -1,8 +1,28 @@
 ﻿@page
-@model IndexModel
+@model AspnetRun.Web.Pages.Product.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm" />
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    Search
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
 
 <table class="table table-hover">
     <thead>
@@ -43,5 +63,3 @@
         }
     </tbody>
 </table>
-
-

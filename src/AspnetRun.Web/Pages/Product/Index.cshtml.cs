@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AspnetRun.Web.Interfaces;
-using AspnetRun.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using AspnetRun.Web.ViewModels;
+using AspnetRun.Web.Interfaces;
 
-namespace AspnetRun.Web.Pages
+namespace AspnetRun.Web.Pages.Product
 {
     public class IndexModel : PageModel
     {
@@ -18,14 +18,13 @@ namespace AspnetRun.Web.Pages
         }
 
         public IEnumerable<ProductViewModel> ProductList { get; set; } = new List<ProductViewModel>();
-        public CategoryViewModel CategoryModel { get; set; } = new CategoryViewModel();
 
-        public async Task<IActionResult> OnGet()
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+        public async Task<IActionResult> OnGetAsync()
         {
             ProductList = await _indexPageService.GetProducts();
-
-            //CategoryModel = await _indexPageService.GetCategoryWithProducts(1);
-            //ProductModel = await _indexPageService.GetProducts();
             return Page();
         }
     }

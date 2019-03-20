@@ -8,10 +8,6 @@ namespace AspnetRun.Web.Interfaces
     // this is the razor page based service
     public interface IIndexPageService
     {
-        Task<IEnumerable<ProductViewModel>> GetProducts();
-        Task<CategoryViewModel> GetCategoryWithProducts(int categoryId);
-        Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel);
-        Task UpdateProduct(ProductViewModel productViewModel);
-        Task DeleteProduct(ProductViewModel productViewModel);
+        Task<IEnumerable<ProductViewModel>> GetProducts();        
     }
 }
