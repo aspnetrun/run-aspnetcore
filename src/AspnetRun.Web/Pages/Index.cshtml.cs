@@ -22,7 +22,7 @@ namespace AspnetRun.Web.Pages
 
         public async Task<IActionResult> OnGet()
         {
-            ProductModel = await _indexPageService.GetAll();
+            // ProductModel = await _indexPageService.GetAll();
 
             //CategoryModel = await _indexPageService.GetCategoryWithProducts(1);
             //ProductModel = await _indexPageService.GetProducts();

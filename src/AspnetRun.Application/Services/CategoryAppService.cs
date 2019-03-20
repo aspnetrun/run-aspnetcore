@@ -10,14 +10,15 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class CategoryAppService : AspnetRunAppService<Category, CategoryDto>, ICategoryAppService
+    public class CategoryAppService : ICategoryAppService
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IAppLogger<CategoryAppService> _logger;
 
-        public CategoryAppService(IAsyncRepository<Category> repository, IAppLogger<Category> logger, ICategoryRepository categoryRepository)
-            : base(repository, logger)
+        public CategoryAppService(ICategoryRepository categoryRepository, IAppLogger<CategoryAppService> logger)
         {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<CategoryDto> GetCategoryWithProductsAsync(int categoryId)
@@ -26,10 +27,6 @@ namespace AspnetRun.Application.Services
             var mapped = ObjectMapper.Mapper.Map<CategoryDto>(category);
             return mapped;
         }
-
-        public override Task<CategoryDto> Add(CategoryDto entityDto)
-        {
-            return base.Add(entityDto);
-        }
+        
     }
 }

@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
-    public class ProductAppService : AspnetRunAppService<Product, ProductDto>, IProductAppService
+    // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+    public class ProductAppService : IProductAppService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IAppLogger<ProductAppService> _logger;
 
-        public ProductAppService(IAsyncRepository<Product> repository, IAppLogger<Product> logger, IProductRepository productRepository)
-            : base(repository, logger)
+        public ProductAppService(IProductRepository productRepository, IAppLogger<ProductAppService> logger)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<IEnumerable<ProductDto>> GetProductList()
@@ -40,15 +42,52 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
-        public async Task Insert(ProductDto product)
+        public async Task<ProductDto> Create(ProductDto entityDto)
         {
-            // Validate(product);
-            //this.ValidateProduct(productId, product);
-            _logger.LogInformation($"Product successfully added.");
+            ValidateProduct(entityDto);
 
-            // validation should be handled in here 
+            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
+            if (mappedEntity == null)
+                throw new ApplicationException($"Entity could not be mapped.");
+
+            var newEntity = await _productRepository.AddAsync(mappedEntity);
+            _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
+
+            var newMappedEntity = ObjectMapper.Mapper.Map<ProductDto>(newEntity);
+            return newMappedEntity;
+        }      
+
+        public async Task Update(ProductDto entityDto)
+        {
+            ValidateProduct(entityDto);
+
+            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
+            if (mappedEntity == null)
+                throw new ApplicationException($"Entity could not be mapped.");
+
+            await _productRepository.UpdateAsync(mappedEntity);
+            _logger.LogInformation($"Entity successfully updated - AspnetRunAppService");
         }
 
+        public async Task Delete(ProductDto entityDto)
+        {
+            ValidateProduct(entityDto);
+
+            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
+            if (mappedEntity == null)
+                throw new ApplicationException($"Entity could not be mapped.");
+
+            await _productRepository.DeleteAsync(mappedEntity);
+            _logger.LogInformation($"Entity successfully deleted - AspnetRunAppService");
+        }
+
+        private void ValidateProduct(ProductDto entityDto)
+        {
+            var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
+            if (existingEntity != null)
+                throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
+        }
+      
         private void ValidateProduct(Guid productId, Product product)
         {
             if (product == null)

@@ -30,39 +30,9 @@ namespace AspnetRun.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            ///// aspnetrun dependencies
-
-            ConfigureDatabases(services);
-
-            // Add AutoMapper
-            services.AddAutoMapper();
-
-            // Add Infrastructure Layer
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-
-            // Add Application Layer
-            services.AddScoped(typeof(IAspnetRunAppService<,>), typeof(AspnetRunAppService<,>));
-            services.AddScoped<IProductAppService, ProductAppService>();
-            services.AddScoped<ICategoryAppService, CategoryAppService>();
-
-            // Add Web Layer
-            services.AddScoped(typeof(IAspnetRunPageService<,,>), typeof(AspnetRunPageService<,,>));
-            services.AddScoped<IIndexPageService, IndexPageService>();
-
-            // Add Infrastructure Layer
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-            services.Configure<AspnetRunSettings>(Configuration);
-
-            services.AddHttpContextAccessor();
-            services.AddHealthChecks()
-                .AddCheck<IndexPageHealthCheck>("home_page_health_check");
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-
+        {            
+            // aspnetrun dependencies
+            ConfigureAspnetRunServices(services);            
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -73,7 +43,7 @@ namespace AspnetRun.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-        }
+        }        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -96,15 +66,41 @@ namespace AspnetRun.Web
             app.UseMvc();
         }
 
+        private void ConfigureAspnetRunServices(IServiceCollection services)
+        {
+            // Add Core Layer
+            services.Configure<AspnetRunSettings>(Configuration);
+
+            // Add Infrastructure Layer
+            ConfigureDatabases(services);
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+            // Add Application Layer            
+            services.AddScoped<IProductAppService, ProductAppService>();
+            services.AddScoped<ICategoryAppService, CategoryAppService>();
+
+            // Add Web Layer
+            services.AddAutoMapper(); // Add AutoMapper
+            services.AddScoped<IIndexPageService, IndexPageService>();
+
+            // Add Miscellaneous
+            services.AddHttpContextAccessor();
+            services.AddHealthChecks()
+                .AddCheck<IndexPageHealthCheck>("home_page_health_check");
+        }
+
         public void ConfigureDatabases(IServiceCollection services)
         {
             // use in-memory database
             services.AddDbContext<AspnetRunContext>(c =>
                 c.UseInMemoryDatabase("AspnetRunConnection"));
 
-            //// use real database            
+            //// use real database
             //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));            
+            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
         }
     }
 }

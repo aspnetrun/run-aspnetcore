@@ -1,28 +1,28 @@
 ﻿using AspnetRun.Application.Dtos;
 using AspnetRun.Application.Interfaces;
-using AspnetRun.Core.Entities;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Services
 {
-    public class IndexPageService : AspnetRunPageService<Product, ProductDto, ProductViewModel>, IIndexPageService
+    public class IndexPageService : IIndexPageService
     {
         private readonly IProductAppService _productAppService;
         private readonly ICategoryAppService _categoryAppService;
+        private readonly IMapper _mapper;
+        private readonly ILogger<IndexPageService> _logger;
 
-        public IndexPageService(IAspnetRunAppService<Product, ProductDto> appService, IMapper mapper, ILogger<ProductViewModel> logger, 
-            IProductAppService productAppService, ICategoryAppService categoryAppService)
-            : base(appService, mapper, logger)
+        public IndexPageService(IProductAppService productAppService, ICategoryAppService categoryAppService, IMapper mapper, ILogger<IndexPageService> logger)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<IEnumerable<ProductViewModel>> GetProducts()
@@ -39,10 +39,19 @@ namespace AspnetRun.Web.Services
             return mapped;
         }
 
-        public override Task<IEnumerable<ProductViewModel>> GetAll()
+        public async Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)
         {
-            return base.GetAll();
+            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            if (mapped == null)
+                throw new Exception($"Entity could not be mapped.");
+
+            var entityDto = await _productAppService.Create(mapped);
+            _logger.LogInformation($"Entity successfully added - AspnetRunPageService");
+
+            var mappedViewModel = _mapper.Map<ProductViewModel>(entityDto);
+            return mappedViewModel;
         }
+
 
     }
 }
