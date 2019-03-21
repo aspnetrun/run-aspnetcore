@@ -32,6 +32,17 @@ public void ConfigureDatabases(IServiceCollection services)
 }
 ```
 
+1. Ensure your connection strings in appsettings.json point to a local SQL Server instance.
+
+2. Open a command prompt in the Web folder and execute the following commands:
+
+```
+dotnet restore
+dotnet ef database update -c AspnetRunContext -p ../AspnetRun.Infrastructure/AspnetRun.Infrastructure.csproj -s AspnetRun.Web.csproj
+```
+These commands will create aspnetrun database which include Product and Category table. You can see from AspnetRunContext.cs.
+1. Run the application.
+The first time you run the application, it will seed aspnetrun database with a few data such that you should see products and categories.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
