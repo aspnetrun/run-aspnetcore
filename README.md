@@ -1,8 +1,12 @@
 # run-core
-A starter kit for your next web application.
-You can check full documentation and step by step development of this repo in this e-book - http://www.aspnetrun.com/Book
+A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. 
+
+You can check full documentation and step by step development of 100+ page eBook PDF from here - http://www.aspnetrun.com/Book
 
 ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications. It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
+Focuses on traditional Web Application Development with a single deployment.
+
+The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also there is a sample project which is implemented this repository and build sample of eCommerce reference application, you can check this repo in this location : [run-core-sample](https://github.com/aspnetrun/run-core-sample)
 
 ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
