@@ -1,9 +1,11 @@
 # run-core
-A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. 
+A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. Aimed to be a Clean Architecture, with applying SOLID model in order to use for a project template. 
 
 You can check full documentation and step by step development of 100+ page **eBook PDF** from here - http://www.aspnetrun.com/Book
 
-ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications. It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
+ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications built on latest ASP.NET Core & Web API technologies. It explains how and where to use dependency injection, logging, validation, exception handling, localization and so on. It is not only explains itself but also using popular framework and libraries.
+
+It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
 This repository focused on traditional Web Application Development with a single deployment.
 
 The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
@@ -87,7 +89,8 @@ update-database
 
 ### Layered Architecture
 
-AspnetRun provides a layered architectural model based on Domain Driven Design and provides a SOLID model for your application.
+AspnetRun implements NLayer architecture (Core, Application, Infrastructure and Presentation Layers) and Domain Driven Design (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement best practices such as Dependency Injection, logging, validation, exception handling, localization and so on.
+
 
 IMAGE
 
