@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Web", "src\AspnetRun.Web\AspnetRun.Web.csproj", "{2D55F0E2-9FA4-412C-AA61-31551B081CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Core.Tests", "test\AspnetRun.Core.Tests\AspnetRun.Core.Tests.csproj", "{99500910-759E-4BB0-80CE-7A0253100ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Core.Tests", "test\AspnetRun.Core.Tests\AspnetRun.Core.Tests.csproj", "{99500910-759E-4BB0-80CE-7A0253100ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Infrastructure.Tests", "test\AspnetRun.Infrastructure.Tests\AspnetRun.Infrastructure.Tests.csproj", "{A45DAD46-157E-4B24-99B9-9A8334FA7945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Infrastructure.Tests", "test\AspnetRun.Infrastructure.Tests\AspnetRun.Infrastructure.Tests.csproj", "{A45DAD46-157E-4B24-99B9-9A8334FA7945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Application.Tests", "test\AspnetRun.Application.Tests\AspnetRun.Application.Tests.csproj", "{0889FF01-29BA-4387-A64C-2E60199C9544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Application.Tests", "test\AspnetRun.Application.Tests\AspnetRun.Application.Tests.csproj", "{0889FF01-29BA-4387-A64C-2E60199C9544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Web.Tests", "test\AspnetRun.Web.Tests\AspnetRun.Web.Tests.csproj", "{BFB2CC68-CE2B-4346-982B-CE06CB303A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Web.Tests", "test\AspnetRun.Web.Tests\AspnetRun.Web.Tests.csproj", "{BFB2CC68-CE2B-4346-982B-CE06CB303A26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,42 +1,42 @@
-﻿using AspnetRun.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using AspnetRun.Core.Entities;
+//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace AspnetRun.Infrastructure.Tests.Builders
-{
-    public class ProductBuilder
-    {
-        private Product _product;
-        public int TestProductId { get; } = 5;
-        public string TestProductName => "Test Product Name";
-        public int TestCategoryId { get; } = 8;
+//namespace AspnetRun.Infrastructure.Tests.Builders
+//{
+//    public class ProductBuilder
+//    {
+//        private Product _product;
+//        public int TestProductId { get; } = 5;
+//        public string TestProductName => "Test Product Name";
+//        public int TestCategoryId { get; } = 8;
         
-        public decimal TestUnitPrice = 1.23m;
-        public short TestUnitInStock = 4;
-        public short TestUnitsOnOrder = 4;
-        public short ReOrderLevel = 4;
-        public bool Discontinued = true;
+//        public decimal TestUnitPrice = 1.23m;
+//        public short TestUnitInStock = 4;
+//        public short TestUnitsOnOrder = 4;
+//        public short ReOrderLevel = 4;
+//        public bool Discontinued = true;
 
-        public ProductBuilder()
-        {
-            _product = WithDefaultValues();
+//        public ProductBuilder()
+//        {
+//            _product = WithDefaultValues();
 
-        }
+//        }
 
-        public Product Build()
-        {
-            return _product;
-        }
+//        public Product Build()
+//        {
+//            return _product;
+//        }
 
-        public Product WithDefaultValues()
-        {
-            return Product.Create(TestProductId, TestCategoryId, TestProductName);
-        }
+//        public Product WithDefaultValues()
+//        {
+//            return Product.Create(TestProductId, TestCategoryId, TestProductName);
+//        }
 
-        public Product WithAllValues()
-        {
-            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestUnitPrice, TestUnitInStock, TestUnitsOnOrder, ReOrderLevel, Discontinued);
-        }
-    }
-}
+//        public Product WithAllValues()
+//        {
+//            return Product.Create(TestProductId, TestCategoryId, TestProductName, TestUnitPrice, TestUnitInStock, TestUnitsOnOrder, ReOrderLevel, Discontinued);
+//        }
+//    }
+//}
