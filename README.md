@@ -85,34 +85,19 @@ add migration YourCustomEntityChanges
 update-database
 ```
 
-------------BURDASIN
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-Don't Repeat Yourself! ASP.NET Run designed common software development tasks by convention. You focus on your business code!
-
-```
-public async Task<ProductDto> Create(ProductDto entityDto)
-{
-    await ValidateProductIfExist(entityDto);
-
-    var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
-    if (mappedEntity == null)
-        throw new ApplicationException($"Entity could not be mapped.");
-
-    var newEntity = await _productRepository.AddAsync(mappedEntity);
-    _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
-
-    var newMappedEntity = ObjectMapper.Mapper.Map<ProductDto>(newEntity);
-    return newMappedEntity;
-}
-```
-
 ### Layered Architecture
 
 AspnetRun provides a layered architectural model based on Domain Driven Design and provides a SOLID model for your application.
 
+IMAGE
 
-### Prerequisites
+Layers divided by 4;
+* Core
+* Application
+* Infrastructure
+* Web
+
+### Core Layer
 
 What things you need to install the software and how to install them
 
@@ -175,14 +160,20 @@ Add additional notes about how to deploy this on a live system
 * AutoMapper
 
 ## Architecture
-* Full architecture with responsibility separation of concerns, SOLID and Clean Code
+* Clean Architecture
+* Full architecture with responsibility separation of concerns
+* SOLID and Clean Code
 * Domain Driven Design (Layers and Domain Model Pattern)
-* Domain Events
-* Domain Notification
-* CQRS (Imediate Consistency)
-* Event Sourcing
 * Unit of Work
 * Repository and Generic Repository
+* Multiple Page Web Application (MPA)
+* Monolitic Deployment Architecture
+
+## Disclaimer
+
+* This repository is not intended to be a definitive solution.
+* This repository not implemented a lot of 3rd party packages, we are try to avoid the over engineering when building on best practices.
+* Beware to use in production way.
 
 ## Contributing
 
@@ -192,13 +183,21 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Next Releases
+## Next Releases and RoapMap
 
 For information on upcoming features and fixes, take a look at the [product roadmap](https://github.com/aspnetrun/run-core/projects).
 
 ### Implemented Projects
 
 You can check real-world example of run-core web application. In this repository you will find full implementation of e-commerce real-world example. [run-core-sample]
+
+## Deployment - AspnetRun Online
+
+This project is deployed on Azure. See the project running on Azure in [here](aspnetrun.com).
+
+## Pull-Request
+
+Please fork this repository, and send me your findings with pull-requests. This is open-source repository so open to contributions.
 
 ## Authors
 
