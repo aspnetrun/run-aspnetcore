@@ -101,6 +101,5 @@ namespace AspnetRun.Application.Services
             if (existingEntity == null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id is not exists");
         }
-
     }
 }
