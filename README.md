@@ -1,11 +1,6 @@
 # run-core
-A starter kit for your next web application
-
-
-
-# Project Title
-
-One Paragraph of project description goes here
+A starter kit for your next web application.
+You can check full documentation and step by step development of this repo in this e-book - http://www.aspnetrun.com/Book
 
 ## Getting Started
 
@@ -18,6 +13,10 @@ What things you need to install the software and how to install them
 ```
 Give examples
 ```
+
+### Usage
+
+You can use this library using DotnetCrawler class with builder pattern in your console applications;
 
 ### Installing
 
@@ -67,6 +66,12 @@ Add additional notes about how to deploy this on a live system
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
+Development environments;
+
+* Visual Studio 2017
+* .Net Core 2.2 or later
+* EF Core 2.2 or later
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
@@ -75,11 +80,19 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
+## Next Releases
+
+This program only imported EF.Core and using default downloader-processor-pipeline classes. And this program only solve spesific problem of customer requirements. So it will evolve a product and extent with new features as listed below;
+
+* Extend with different database providers. 
+* Extend for different downloader-processor-pipeline implementations which requested with different aproaches.
+* Use with hangfire, quartz schedular frameworks in order to schedule and use async functions.
+
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Mehmet Ozkaya** - *Initial work* - [mehmetozkaya](https://github.com/mehmetozkaya)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/aspnetrun/run-core/contributors) who participated in this project.
 
 ## License
 
