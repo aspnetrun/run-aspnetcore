@@ -91,8 +91,7 @@ update-database
 
 AspnetRun implements NLayer architecture (Core, Application, Infrastructure and Presentation Layers) and Domain Driven Design (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement best practices such as Dependency Injection, logging, validation, exception handling, localization and so on.
 
-
-IMAGE
+![DDD_png_pure](https://user-images.githubusercontent.com/1147445/54773098-e1efe700-4c19-11e9-9150-74f7e770de42.png)
 
 Layers divided by 4;
 * Core
