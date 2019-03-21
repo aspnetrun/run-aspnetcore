@@ -39,9 +39,9 @@ namespace AspnetRun.Web.Pages.Product
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? productId)
         {
-            if (id == null)
+            if (productId == null)
             {
                 return NotFound();
             }
