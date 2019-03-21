@@ -12,6 +12,9 @@ These [run-core](https://github.com/aspnetrun/run-core) and [run-core-sample](ht
 
 ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
+## Give a Star! :star:
+If you liked the project or if AspnetRun helped you, please give a star.
+
 ## Getting Started
 Use these instructions to get the project up and running.
 
@@ -38,7 +41,7 @@ dotnet build
 dotnet run
 ```
 5. Launch http://localhost:5400/ in your browser to view the Web UI.
-or
+
 If you have Visual Studio after cloning Open solution with your IDE, AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio with F5. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
 
 ### Usage
@@ -166,7 +169,20 @@ Add additional notes about how to deploy this on a live system
 ## Technologies
 * .NET Core 2.2
 * ASP.NET Core 2.2
-* Entity Framework Core 2.2
+* Entity Framework Core 2.2 
+* .NET Core Native DI
+* Razor Pages
+* AutoMapper
+
+## Architecture
+* Full architecture with responsibility separation of concerns, SOLID and Clean Code
+* Domain Driven Design (Layers and Domain Model Pattern)
+* Domain Events
+* Domain Notification
+* CQRS (Imediate Consistency)
+* Event Sourcing
+* Unit of Work
+* Repository and Generic Repository
 
 ## Contributing
 
