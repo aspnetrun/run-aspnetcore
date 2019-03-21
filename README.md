@@ -2,9 +2,37 @@
 A starter kit for your next web application.
 You can check full documentation and step by step development of this repo in this e-book - http://www.aspnetrun.com/Book
 
+ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications. It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
+
+ASP.NET Run works with the latest ASP.NET Core & EF Core.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+Don't Repeat Yourself! ASP.NET Run designed common software development tasks by convention. You focus on your business code!
+
+```
+public async Task<ProductDto> Create(ProductDto entityDto)
+{
+    await ValidateProductIfExist(entityDto);
+
+    var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
+    if (mappedEntity == null)
+        throw new ApplicationException($"Entity could not be mapped.");
+
+    var newEntity = await _productRepository.AddAsync(mappedEntity);
+    _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
+
+    var newMappedEntity = ObjectMapper.Mapper.Map<ProductDto>(newEntity);
+    return newMappedEntity;
+}
+```
+
+### Layered Architecture
+
+AspnetRun provides a layered architectural model based on Domain Driven Design and provides a SOLID model for your application.
+
 
 ### Prerequisites
 
@@ -87,6 +115,10 @@ This program only imported EF.Core and using default downloader-processor-pipeli
 * Extend with different database providers. 
 * Extend for different downloader-processor-pipeline implementations which requested with different aproaches.
 * Use with hangfire, quartz schedular frameworks in order to schedule and use async functions.
+
+### Implemented Projects
+
+You can check real-world example of run-core web application. In this repository you will find full implementation of e-commerce real-world example. [run-core-sample]
 
 ## Authors
 
