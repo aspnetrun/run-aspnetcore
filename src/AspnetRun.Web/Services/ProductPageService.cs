@@ -57,7 +57,7 @@ namespace AspnetRun.Web.Services
         {
             var list = await _categoryAppService.GetCategoryList();
             var mapped = _mapper.Map<IEnumerable<CategoryViewModel>>(list);
-            return mapped;            
+            return mapped;
         }
 
         public async Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)

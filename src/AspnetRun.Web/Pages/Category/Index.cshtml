@@ -1,0 +1,28 @@
+﻿@page
+@model AspnetRun.Web.Pages.Category.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Category List</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>            
+            <th scope="col">Description</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.CategoryList)
+        {
+            <tr>
+                <th scope="row">@category.Id</th>
+                <td>@category.CategoryName</td>
+                <td>@category.Description</td>              
+            </tr>
+        }
+    </tbody>
+</table>
