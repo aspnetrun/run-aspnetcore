@@ -12,6 +12,27 @@ ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
 ## Getting Started
 
+Clone or download repository. AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio or use dotnet run command from terminal. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
+
+After cloning or downloading the sample you should be able to run it using an In Memory database immediately.
+If you wish to use the project with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app, and update the ConfigureDatabases method in Startup.cs (see below).
+
+```
+public void ConfigureDatabases(IServiceCollection services)
+{
+    // use in-memory database
+    services.AddDbContext<AspnetRunContext>(c =>
+        c.UseInMemoryDatabase("AspnetRunConnection")
+        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+    //// use real database
+    //services.AddDbContext<AspnetRunContext>(c =>
+    //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"))
+    //    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+}
+```
+
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 Don't Repeat Yourself! ASP.NET Run designed common software development tasks by convention. You focus on your business code!
