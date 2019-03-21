@@ -6,7 +6,8 @@ You can check full documentation and step by step development of 100+ page eBook
 ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications. It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
 This repository focused on traditional Web Application Development with a single deployment.
 
-The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also there is a sample project which is implemented this repository and build sample of eCommerce reference application, you can check this repo in this location : [run-core-sample](https://github.com/aspnetrun/run-core-sample)
+The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
+There is a sample project which is implemented this repository and build sample of eCommerce reference application, you can check this repo in this location : [run-core-sample](https://github.com/aspnetrun/run-core-sample)
 
 ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
@@ -32,7 +33,7 @@ public void ConfigureDatabases(IServiceCollection services)
 }
 ```
 
-1. Ensure your connection strings in appsettings.json point to a local SQL Server instance.
+1. Ensure your connection strings in ```appsettings.json``` point to a local SQL Server instance.
 
 2. Open a command prompt in the Web folder and execute the following commands:
 
@@ -40,9 +41,19 @@ public void ConfigureDatabases(IServiceCollection services)
 dotnet restore
 dotnet ef database update -c AspnetRunContext -p ../AspnetRun.Infrastructure/AspnetRun.Infrastructure.csproj -s AspnetRun.Web.csproj
 ```
+Or you can direct call ef commands from Visual Studio Package Manager Console. Open Package Manager Console, set default project to AspnetRun.Infrastructure and run below command;
+```
+update-database
+```
 These commands will create aspnetrun database which include Product and Category table. You can see from AspnetRunContext.cs.
 1. Run the application.
 The first time you run the application, it will seed aspnetrun database with a few data such that you should see products and categories.
+
+If you modify-change or add new some of entities to Core project, you should run ef migrate commands in order to update your database as the same way but below commands;
+```
+add migration YourCustomEntityChanges
+update-database
+```
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
