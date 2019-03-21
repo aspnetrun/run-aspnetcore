@@ -1,22 +1,49 @@
 # run-core
 A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. 
 
-You can check full documentation and step by step development of 100+ page eBook PDF from here - http://www.aspnetrun.com/Book
+You can check full documentation and step by step development of 100+ page **eBook PDF** from here - http://www.aspnetrun.com/Book
 
 ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications. It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
 This repository focused on traditional Web Application Development with a single deployment.
 
 The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
 There is a sample project which is implemented this repository and build sample of eCommerce reference application, you can check this repo in this location : [run-core-sample](https://github.com/aspnetrun/run-core-sample)
+These [run-core](https://github.com/aspnetrun/run-core) and [run-core-sample](https://github.com/aspnetrun/run-core-sample) repositories are intented to building Multi-Page Web Applications(MPA) using ASP.NET Core Razor Pages templates. If you want to check Single Page Web Application(SPA) architecture using ASP.NET Core + Angular. Please refer to [run-angular](https://github.com/aspnetrun/run-angular) and [run-angular-sample](https://github.com/aspnetrun/run-angular-sample) repositories.
 
 ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
 ## Getting Started
+Use these instructions to get the project up and running.
 
-Clone or download repository. AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio or use dotnet run command from terminal. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
+### Prerequisites
+You will need the following tools:
 
-After cloning or downloading the sample you should be able to run it using an In Memory database immediately.
-If you wish to use the project with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app, and update the ConfigureDatabases method in Startup.cs (see below).
+* [Visual Studio Code or Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+* [.Net Core 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+* EF Core 2.2 or later
+
+### Installing
+Follow these steps to get your development environment set up:
+1. Clone the repository
+2. At the root directory, restore required packages by running:
+```
+dotnet restore
+```
+3. Next, build the solution by running:
+```
+dotnet build
+```
+4. Next, within the AspnetRun.Web directory, launch the back end by running:
+```
+dotnet run
+```
+5. Launch http://localhost:5400/ in your browser to view the Web UI.
+or
+If you have Visual Studio after cloning Open solution with your IDE, AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio with F5. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
+
+### Usage
+After cloning or downloading the sample you should be able to run it using an In Memory database immediately. The default configuration of Entity Framework Database is "InMemoryDatabase".
+If you wish to use the project with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app, and update the ConfigureDatabases method in **Startup.cs** (see below).
 
 ```
 public void ConfigureDatabases(IServiceCollection services)
@@ -45,9 +72,9 @@ Or you can direct call ef commands from Visual Studio Package Manager Console. O
 ```
 update-database
 ```
-These commands will create aspnetrun database which include Product and Category table. You can see from AspnetRunContext.cs.
+These commands will create aspnetrun database which include Product and Category table. You can see from **AspnetRunContext.cs**.
 1. Run the application.
-The first time you run the application, it will seed aspnetrun database with a few data such that you should see products and categories.
+The first time you run the application, it will seed aspnetrun sql server database with a few data such that you should see products and categories.
 
 If you modify-change or add new some of entities to Core project, you should run ef migrate commands in order to update your database as the same way but below commands;
 ```
@@ -55,6 +82,7 @@ add migration YourCustomEntityChanges
 update-database
 ```
 
+------------BURDASIN
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 Don't Repeat Yourself! ASP.NET Run designed common software development tasks by convention. You focus on your business code!
@@ -135,17 +163,10 @@ Give an example
 
 Add additional notes about how to deploy this on a live system
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-Development environments;
-
-* Visual Studio 2017
-* .Net Core 2.2 or later
-* EF Core 2.2 or later
+## Technologies
+* .NET Core 2.2
+* ASP.NET Core 2.2
+* Entity Framework Core 2.2
 
 ## Contributing
 
@@ -157,11 +178,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Next Releases
 
-This program only imported EF.Core and using default downloader-processor-pipeline classes. And this program only solve spesific problem of customer requirements. So it will evolve a product and extent with new features as listed below;
-
-* Extend with different database providers. 
-* Extend for different downloader-processor-pipeline implementations which requested with different aproaches.
-* Use with hangfire, quartz schedular frameworks in order to schedule and use async functions.
+For information on upcoming features and fixes, take a look at the [product roadmap](https://github.com/aspnetrun/run-core/projects).
 
 ### Implemented Projects
 
