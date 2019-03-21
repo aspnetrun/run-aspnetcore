@@ -22,17 +22,17 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).AsNoTracking().ToListAsync();
+            return await ApplySpecification(spec).ToListAsync();
         }
 
         public async Task<int> CountAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).AsNoTracking().CountAsync();
+            return await ApplySpecification(spec).CountAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
@@ -42,7 +42,7 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _dbContext.Set<T>().AsNoTracking().Where(predicate).ToListAsync();
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync();
         }
 
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true)

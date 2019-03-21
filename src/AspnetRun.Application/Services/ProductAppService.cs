@@ -51,7 +51,7 @@ namespace AspnetRun.Application.Services
 
         public async Task<ProductDto> Create(ProductDto entityDto)
         {
-            ValidateProduct(entityDto);
+            await ValidateProductIfExist(entityDto);
 
             var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
             if (mappedEntity == null)
@@ -88,9 +88,9 @@ namespace AspnetRun.Application.Services
             _logger.LogInformation($"Entity successfully deleted - AspnetRunAppService");
         }
 
-        private void ValidateProduct(ProductDto entityDto)
+        private async Task ValidateProductIfExist(ProductDto entityDto)
         {
-            var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
+            var existingEntity = await _productRepository.GetByIdAsync(entityDto.Id);
             if (existingEntity != null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
         }

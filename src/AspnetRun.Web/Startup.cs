@@ -78,7 +78,7 @@ namespace AspnetRun.Web
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
-            // Add Application Layer            
+            // Add Application Layer
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<ICategoryAppService, CategoryAppService>();
 
@@ -95,13 +95,15 @@ namespace AspnetRun.Web
 
         public void ConfigureDatabases(IServiceCollection services)
         {
-            //// use in-memory database
+            // use in-memory database
             //services.AddDbContext<AspnetRunContext>(c =>
-            //    c.UseInMemoryDatabase("AspnetRunConnection"));
+            //    c.UseInMemoryDatabase("AspnetRunConnection")
+            //    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             // use real database
             services.AddDbContext<AspnetRunContext>(c =>
-                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection"))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         }
     }
 }

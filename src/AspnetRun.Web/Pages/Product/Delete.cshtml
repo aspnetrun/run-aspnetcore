@@ -13,10 +13,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            ProductName
+            @Html.DisplayNameFor(model => model.Product.ProductName)            
         </dt>
         <dd class="col-sm-10">
-            @Model.Product.ProductName
+            @Html.DisplayFor(model => model.Product.ProductName)            
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Product.QuantityPerUnit)
