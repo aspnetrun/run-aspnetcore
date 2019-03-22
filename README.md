@@ -15,7 +15,7 @@ These [run-core](https://github.com/aspnetrun/run-core) and [run-core-sample](ht
 ASP.NET Run works with the latest ASP.NET Core & EF Core.
 
 ## Give a Star! :star:
-If you liked the project or if AspnetRun helped you, please give a star.
+If you liked the project or if AspnetRun helped you, please give a star. And also please fork this repository and send us pull-requests.
 
 ## Getting Started
 Use these instructions to get the project up and running.
@@ -93,11 +93,35 @@ AspnetRun implements NLayer architecture (Core, Application, Infrastructure and 
 
 ![DDD_png_pure](https://user-images.githubusercontent.com/1147445/54773098-e1efe700-4c19-11e9-9150-74f7e770de42.png)
 
+### Structure of Project
+
 Layers divided by 4;
 * Core
-* Application
+    * Entities    
+    * Interfaces
+    * Specifications
+    * ValueObjects
+    * Exceptions
+* Application    
+    * Interfaces    
+    * Services
+    * Dtos
+    * Mapper
+    * Exceptions
 * Infrastructure
+    * Data
+    * Repository
+    * Services
+    * Migrations
+    * Logging
+    * Exceptions
 * Web
+    * Interfaces
+    * Services
+    * Pages
+    * ViewModels
+    * Extensions
+    * Mapper
 
 ### Core Layer
 
