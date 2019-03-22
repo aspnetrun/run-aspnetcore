@@ -178,13 +178,13 @@ This specs runs when EF commands working with passing spec. This specs implement
 Implementation of Core interfaces in this project with Entity Framework Core and other dependencies.
 
 #### Data
-	Includes EF Context and tables in this folder. When new entity created, it should add to context and configure in context.
+Includes EF Context and tables in this folder. When new entity created, it should add to context and configure in context.
 #### Migrations
-	EF add-migration classes.
+EF add-migration classes.
 #### Repository
-	EF Repository and Specification implementation. This class responsible to create queries, includes, where conditions etc..
+EF Repository and Specification implementation. This class responsible to create queries, includes, where conditions etc..
 #### Services
-	Custom services implementation, like email, cron jobs etc.
+Custom services implementation, like email, cron jobs etc.
 
 ### Application Layer
 Development of Domain Logic with implementation. Interfaces drives business requirements and implementations in this layer.
@@ -327,6 +327,3 @@ See also the list of [contributors](https://github.com/aspnetrun/run-core/contri
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-![asd](https://user-images.githubusercontent.com/1147445/54828457-4451f180-4cc5-11e9-8226-5bf8eb9a350e.PNG)
-
