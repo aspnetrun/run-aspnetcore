@@ -1,21 +1,25 @@
+# What is AspnetRun ?
+A **starter kit** for your next web application. Boilerplate for **ASP.NET Core reference application** with **Entity Framework Core**, demonstrating a layered application architecture with DDD best practices. Implements **NLayer architecture** (Core, Application, Infrastructure and Presentation Layers) and **Domain Driven Design** (Entities, Repositories, Domain/Application Services, DTO's...) 
+and aimed to be a **Clean Architecture**, with applying **SOLID principles** in order to use for a project template. 
+Also implements and provides a good infrastructure to implement **best practices** and using **design patterns** such as **Dependency Injection**, logging, validation, exception handling, localization and so on.
+
+You can check full repository documentations and step by step development of **100+ page eBook PDF** from here - http://www.aspnetrun.com/Book. Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
+
+# AspnetRun Repositories
+There are **2 types** of aspnetrun repositories;
+* **[run-core](https://github.com/aspnetrun/run-core)** - intented to building Multi-Page Web Applications(MPA) using ASP.NET Core & EF.Core and Razor Pages templates. YOU ARE HERE.
+* **[run-angular](https://github.com/aspnetrun/run-angular)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and Angular for frontend framework. 
+
+And there are 2 sample repositories which are implemented base repository and **applying real-world examples** with developing new features for example Identity, Localization etc..
+* [run-core-sample](https://github.com/aspnetrun/run-core-sample) - implemented this repository and build **sample of eCommerce reference application** on Multi-Page Web Applications(MPA) using ASP.NET Core Razor Pages templates.
+* [run-angular-sample](https://github.com/aspnetrun/run-angular-sample) - implemented run-angular repository and build **sample of eCommerce reference application** on Single Page Web Application(SPA) architecture using ASP.NET Core + Angular.
+
 # run-core
-A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. Aimed to be a Clean Architecture, with applying SOLID model in order to use for a project template. 
+Here is CRUD operations of aspnetrun-core template project;
 
 ![Recordit GIF](http://g.recordit.co/LJCyYfQEpX.gif)
 
-
-You can check full documentation and step by step development of 100+ page **eBook PDF** from here - http://www.aspnetrun.com/Book
-
-ASP.NET Run is a general purpose starter kit application specially designed for new modern web applications built on latest ASP.NET Core & Web API technologies. It explains how and where to use dependency injection, logging, validation, exception handling, localization and so on. It is not only explains itself but also using popular framework and libraries.
-
-It uses already familiar tools and implements best practices around them to provide you a SOLID development experience.
-This repository focused on traditional Web Application Development with a single deployment.
-
-The goal for this boilerplate is to demonstrate some of the principles and patterns described in the [eBook](http://www.aspnetrun.com/Book). Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
-There is a sample project which is implemented this repository and build sample of eCommerce reference application, you can check this repo in this location : [run-core-sample](https://github.com/aspnetrun/run-core-sample)
-These [run-core](https://github.com/aspnetrun/run-core) and [run-core-sample](https://github.com/aspnetrun/run-core-sample) repositories are intented to building Multi-Page Web Applications(MPA) using ASP.NET Core Razor Pages templates. If you want to check Single Page Web Application(SPA) architecture using ASP.NET Core + Angular. Please refer to [run-angular](https://github.com/aspnetrun/run-angular) and [run-angular-sample](https://github.com/aspnetrun/run-angular-sample) repositories.
-
-ASP.NET Run works with the latest ASP.NET Core & EF Core.
+**run-core** is a general purpose to implement the **Default Web Application template of .Net** with **layered architecture** for building modern web applications built on latest ASP.NET Core & Web API & EF Core technologies. These repositories will be **updated regularly**, so when **[Blazor](https://blazor.net/)** will be avaible, this repo also will be **Single Page Web Applcation over the Web Assembly**. We are following Microsoft Web Technologies very closely so we will update accordingly **Microsoft Default Web Application stack**.
 
 ## Give a Star! :star:
 If you liked the project or if AspnetRun helped you, please give a star. And also please fork this repository and send us pull-requests.
@@ -90,15 +94,13 @@ add migration YourCustomEntityChanges
 update-database
 ```
 
-### Layered Architecture
-
-AspnetRun implements NLayer architecture (Core, Application, Infrastructure and Presentation Layers) and Domain Driven Design (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement best practices such as Dependency Injection, logging, validation, exception handling, localization and so on.
+## Layered Architecture
+AspnetRun implements NLayer architecture (Core, Application, Infrastructure and Presentation Layers) and Domain Driven Design (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement best practices such as Dependency Injection, logging, validation, exception handling, localization and so on. The below image represents aspnetrun approach of development architecture of run repository series;
 
 ![DDD_png_pure](https://user-images.githubusercontent.com/1147445/54773098-e1efe700-4c19-11e9-9150-74f7e770de42.png)
 
 ### Structure of Project
-
-Layers divided by 4;
+Repository include layers divided by 4;
 * Core
     * Entities    
     * Interfaces
@@ -127,58 +129,149 @@ Layers divided by 4;
     * Mapper
 
 ### Core Layer
+Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation.
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Usage
-
-You can use this library using DotnetCrawler class with builder pattern in your console applications;
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+#### Entities
+Includes EF Entities which creates sql table with EF Code First Aproach. Some Aggregate folders holds entity and aggregates.
+You can see example of code-first Entity definition as below;
 
 ```
-Give the example
+public class Product : BaseEntity
+{        
+    public string ProductName { get; set; }
+    public string QuantityPerUnit { get; set; }
+    public decimal? UnitPrice { get; set; }
+    public short? UnitsInStock { get; set; }
+    public short? UnitsOnOrder { get; set; }
+    public short? ReorderLevel { get; set; }
+    public bool Discontinued { get; set; }
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
+
+    public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
+    {
+        var product = new Product
+        {
+            Id = productId,
+            CategoryId = categoryId,
+            ProductName = name,
+            UnitPrice = unitPrice,
+            UnitsInStock = unitsInStock,
+            UnitsOnOrder = unitsOnOrder,
+            ReorderLevel = reorderLevel,
+            Discontinued = discontinued
+        };
+        return product;
+    }
+}
 ```
+Applying domain driven approach, Product class responsible to create Product instance. 
 
-And repeat
+#### Interfaces
+Abstraction of Repository - Domain repositories (IAsyncRepository - IProductRepository) - Specifications etc.. This interfaces include database operations without any application and ui responsibilities.
+
+#### Specifications
+Creates custom scripts with using ISpecification interface. Using BaseSpecification managing Criteria, Includes, OrderBy, Paging.
+This specs runs when EF commands working with passing spec. This specs implemented SpecificationEvaluator.cs and creates query to AspnetRunRepository.cs in ApplySpecification method.This helps create custom queries.
+
+### Infrastructure Layer
+Implementation of Core interfaces in this project with Entity Framework Core and other dependencies.
+
+#### Data
+	Includes EF Context and tables in this folder. When new entity created, it should add to context and configure in context.
+#### Migrations
+	EF add-migration classes.
+#### Repository
+	EF Repository and Specification implementation. This class responsible to create queries, includes, where conditions etc..
+#### Services
+	Custom services implementation, like email, cron jobs etc.
+
+### Application Layer
+Development of Domain Logic with implementation. Interfaces drives business requirements and implementations in this layer.
+Application layer defines that user required actions in app services classes as below way;
 
 ```
-until finished
+public interface IProductAppService
+{
+    Task<IEnumerable<ProductDto>> GetProductList();
+    Task<ProductDto> GetProductById(int productId);
+    Task<IEnumerable<ProductDto>> GetProductByName(string productName);
+    Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId);
+    Task<ProductDto> Create(ProductDto entityDto);
+    Task Update(ProductDto entityDto);
+    Task Delete(ProductDto entityDto);
+}
 ```
+Also implementation located same places in order to choose different implementation at runtime when DI bootstrapped.
+``` 
+public class ProductAppService : IProductAppService
+{
+    private readonly IProductRepository _productRepository;
+    private readonly IAppLogger<ProductAppService> _logger;
 
-End with an example of getting some data out of the system or using it for a little demo
+    public ProductAppService(IProductRepository productRepository, IAppLogger<ProductAppService> logger)
+    {
+        _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+    public async Task<IEnumerable<ProductDto>> GetProductList()
+    {
+        var productList = await _productRepository.GetProductListAsync();
+        var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+        return mapped;
+    }
+}
 ```
-Give an example
+In this layer we can add validation , authorization, logging, exception handling etc. -- cross cutting activities should be handled in here.
+
+### Web Layer
+Development of UI Logic with implementation. Interfaces drives business requirements and implementations in this layer.
+Web layer defines that user required actions in page services classes as below way;
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
+public interface IProductPageService
+{
+    Task<IEnumerable<ProductViewModel>> GetProducts(string productName);
+    Task<ProductViewModel> GetProductById(int productId);
+    Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId);
+    Task<IEnumerable<CategoryViewModel>> GetCategories();
+    Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel);
+    Task UpdateProduct(ProductViewModel productViewModel);
+    Task DeleteProduct(ProductViewModel productViewModel);
+}
 ```
-Give an example
+Also implementation located same places in order to choose different implementation at runtime when DI bootstrapped.
 ```
+public class ProductPageService : IProductPageService
+{
+    private readonly IProductAppService _productAppService;
+    private readonly ICategoryAppService _categoryAppService;
+    private readonly IMapper _mapper;
+    private readonly ILogger<ProductPageService> _logger;
 
-## Deployment
+    public ProductPageService(IProductAppService productAppService, ICategoryAppService categoryAppService, IMapper mapper, ILogger<ProductPageService> logger)
+    {
+        _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
+        _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-Add additional notes about how to deploy this on a live system
+    public async Task<IEnumerable<ProductViewModel>> GetProducts(string productName)
+    {
+        if (string.IsNullOrWhiteSpace(productName))
+        {
+            var list = await _productAppService.GetProductList();
+            var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(list);
+            return mapped;
+        }
+
+        var listByName = await _productAppService.GetProductByName(productName);
+        var mappedByName = _mapper.Map<IEnumerable<ProductViewModel>>(listByName);
+        return mappedByName;
+    }
+}
+```
 
 ## Technologies
 * .NET Core 2.2
@@ -197,6 +290,7 @@ Add additional notes about how to deploy this on a live system
 * Repository and Generic Repository
 * Multiple Page Web Application (MPA)
 * Monolitic Deployment Architecture
+* Specification Pattern
 
 ## Disclaimer
 
@@ -206,19 +300,15 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [Contributing.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/aspnetrun/run-core/tags). 
 
 ## Next Releases and RoapMap
 
 For information on upcoming features and fixes, take a look at the [product roadmap](https://github.com/aspnetrun/run-core/projects).
-
-### Implemented Projects
-
-You can check real-world example of run-core web application. In this repository you will find full implementation of e-commerce real-world example. [run-core-sample]
 
 ## Deployment - AspnetRun Online
 
@@ -237,13 +327,6 @@ See also the list of [contributors](https://github.com/aspnetrun/run-core/contri
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
 
 ![asd](https://user-images.githubusercontent.com/1147445/54828457-4451f180-4cc5-11e9-8226-5bf8eb9a350e.PNG)
 
