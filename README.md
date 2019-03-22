@@ -1,7 +1,8 @@
 # run-core
 A starter kit for your next web application. Boilerplate for ASP.NET Core reference application with Entity Framework Core, demonstrating a layered application architecture with DDD best practices. Aimed to be a Clean Architecture, with applying SOLID model in order to use for a project template. 
 
-![asd](https://user-images.githubusercontent.com/1147445/54828457-4451f180-4cc5-11e9-8226-5bf8eb9a350e.PNG)
+![Recordit GIF](http://g.recordit.co/LJCyYfQEpX.gif)
+
 
 You can check full documentation and step by step development of 100+ page **eBook PDF** from here - http://www.aspnetrun.com/Book
 
@@ -242,3 +243,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+
+
+![asd](https://user-images.githubusercontent.com/1147445/54828457-4451f180-4cc5-11e9-8226-5bf8eb9a350e.PNG)
+
