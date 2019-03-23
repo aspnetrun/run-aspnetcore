@@ -278,6 +278,10 @@ public class ProductPageService : IProductPageService
     }
 }
 ```
+### Test Layer
+For each layer, there is a test project which includes intended layer dependencies and mock classes. So that means Core-Application-Infrastructure and Web layer has their own test layer. By this way this test projects also divided by unit, functional and integration tests defined by in which layer it is implemented. 
+Test projects using xunit and Mock libraries.  xunit, because that's what ASP.NET Core uses internally to test the product. Moq, because perform to create fake objects clearly and its very modular.
+
 
 ## Technologies
 * .NET Core 2.2
