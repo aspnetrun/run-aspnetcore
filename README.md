@@ -51,11 +51,11 @@ dotnet run
 ```
 5. Launch http://localhost:5400/ in your browser to view the Web UI.
 
-If you have Visual Studio after cloning Open solution with your IDE, AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio with F5. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
+If you have **Visual Studio** after cloning Open solution with your IDE, AspnetRun.Web should be the start-up project. Directly run this project on Visual Studio with **F5 or Ctrl+F5**. You will see index page of project, you can navigate product and category pages and you can perform crud operations on your browser.
 
 ### Usage
-After cloning or downloading the sample you should be able to run it using an In Memory database immediately. The default configuration of Entity Framework Database is "InMemoryDatabase".
-If you wish to use the project with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app, and update the ConfigureDatabases method in **Startup.cs** (see below).
+After cloning or downloading the sample you should be able to run it using an In Memory database immediately. The default configuration of Entity Framework Database is **"InMemoryDatabase"**.
+If you wish to use the project with a persistent database, you will need to run its Entity Framework Core **migrations** before you will be able to run the app, and update the ConfigureDatabases method in **Startup.cs** (see below).
 
 ```
 public void ConfigureDatabases(IServiceCollection services)
@@ -80,7 +80,7 @@ public void ConfigureDatabases(IServiceCollection services)
 dotnet restore
 dotnet ef database update -c AspnetRunContext -p ../AspnetRun.Infrastructure/AspnetRun.Infrastructure.csproj -s AspnetRun.Web.csproj
 ```
-Or you can direct call ef commands from Visual Studio Package Manager Console. Open Package Manager Console, set default project to AspnetRun.Infrastructure and run below command;
+Or you can direct call ef commands from Visual Studio **Package Manager Console**. Open Package Manager Console, set default project to AspnetRun.Infrastructure and run below command;
 ```
 update-database
 ```
@@ -95,12 +95,14 @@ update-database
 ```
 
 ## Layered Architecture
-AspnetRun implements NLayer architecture (Core, Application, Infrastructure and Presentation Layers) and Domain Driven Design (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement best practices such as Dependency Injection, logging, validation, exception handling, localization and so on. The below image represents aspnetrun approach of development architecture of run repository series;
+AspnetRun implements NLayer **Hexagonal architecture** (Core, Application, Infrastructure and Presentation Layers) and **Domain Driven Design** (Entities, Repositories, Domain/Application Services, DTO's...). Also implements and provides a good infrastructure to implement **best practices** such as Dependency Injection, logging, validation, exception handling, localization and so on.
+Aimed to be a **Clean Architecture** also called **Onion Architecture**, with applying **SOLID principles** in order to use for a project template. Also implements and provides a good infrastructure to implement **best practices** like **loosely-coupled, dependency-inverted** architecture
+The below image represents aspnetrun approach of development architecture of run repository series;
 
 ![DDD_png_pure](https://user-images.githubusercontent.com/1147445/54773098-e1efe700-4c19-11e9-9150-74f7e770de42.png)
 
 ### Structure of Project
-Repository include layers divided by 4;
+Repository include layers divided by **4 project**;
 * Core
     * Entities    
     * Interfaces
@@ -129,11 +131,11 @@ Repository include layers divided by 4;
     * Mapper
 
 ### Core Layer
-Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation. The Core project is the center of the Clean Architecture design, and all other project dependencies should point toward it. 
+Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation. The Core project is the **center of the Clean Architecture** design, and all other project dependencies should point toward it. 
 
 #### Entities
-Includes EF Entities which creates sql table with EF Code First Aproach. Some Aggregate folders holds entity and aggregates.
-You can see example of code-first Entity definition as below;
+Includes Entity Framework Core Entities which creates sql table with **Entity Framework Core Code First Aproach**. Some Aggregate folders holds entity and aggregates.
+You can see example of **code-first** Entity definition as below;
 
 ```
 public class Product : BaseEntity
@@ -171,17 +173,17 @@ Applying domain driven approach, Product class responsible to create Product ins
 Abstraction of Repository - Domain repositories (IAsyncRepository - IProductRepository) - Specifications etc.. This interfaces include database operations without any application and ui responsibilities.
 
 #### Specifications
-Creates custom scripts with using ISpecification interface. Using BaseSpecification managing Criteria, Includes, OrderBy, Paging.
+This folder is implementation of **[specification pattern](https://en.wikipedia.org/wiki/Specification_pattern)**. Creates custom scripts with using **ISpecification** interface. Using BaseSpecification managing Criteria, Includes, OrderBy, Paging.
 This specs runs when EF commands working with passing spec. This specs implemented SpecificationEvaluator.cs and creates query to AspnetRunRepository.cs in ApplySpecification method.This helps create custom queries.
 
 ### Infrastructure Layer
-Implementation of Core interfaces in this project with Entity Framework Core and other dependencies.
+Implementation of Core interfaces in this project with **Entity Framework Core** and other dependencies.
 Most of your application's dependence on external resources should be implemented in classes defined in the Infrastructure project. These classes must implement the interfaces defined in Core. If you have a very large project with many dependencies, it may make sense to have more than one Infrastructure project (eg Infrastructure.Data), but in most projects one Infrastructure project that contains folders works well.
-This could be includes, for example, e-mail providers, file access, web api clients, etc. For now this repository only dependend sample data access and basic domain actions, by this way there will be no direct links to your Core or UI projects.
+This could be includes, for example, **e-mail providers, file access, web api clients**, etc. For now this repository only dependend sample data access and basic domain actions, by this way there will be no direct links to your Core or UI projects.
 
 #### Data
-Includes EF Context and tables in this folder. When new entity created, it should add to context and configure in context.
-The Infrastructure project depends on Microsoft.EntityFrameworkCore.SqlServer and EF.Core related nuget packages, you can check nuget packages of Infrastructure layer. If you want to change your data access layer, it can easily be replaced with a lighter-weight ORM like Dapper. 
+Includes **Entity Framework Core Context** and tables in this folder. When new entity created, it should add to context and configure in context.
+The Infrastructure project depends on Microsoft.**EntityFrameworkCore.SqlServer** and EF.Core related nuget packages, you can check nuget packages of Infrastructure layer. If you want to change your data access layer, it can easily be replaced with a lighter-weight ORM like Dapper. 
 
 #### Migrations
 EF add-migration classes.
@@ -191,7 +193,7 @@ EF Repository and Specification implementation. This class responsible to create
 Custom services implementation, like email, cron jobs etc.
 
 ### Application Layer
-Development of Domain Logic with implementation. Interfaces drives business requirements and implementations in this layer.
+Development of **Domain Logic with implementation**. Interfaces drives business requirements and implementations in this layer.
 Application layer defines that user required actions in app services classes as below way;
 
 ```
@@ -231,7 +233,7 @@ In this layer we can add validation , authorization, logging, exception handling
 
 ### Web Layer
 Development of UI Logic with implementation. Interfaces drives business requirements and implementations in this layer.
-The application's main starting point is the ASP.NET Core web project. This is a classical console application, with a public static void Main method in Program.cs. It currently uses the default ASP.NET Core project template which based on Razor Pages templates. This includes appsettings.json file plus environment variables in order to stored configuration parameters, and is configured in Startup.cs.
+The application's main **starting point** is the ASP.NET Core web project. This is a classical console application, with a public static void Main method in Program.cs. It currently uses the default **ASP.NET Core project template** which based on **Razor Pages** templates. This includes appsettings.json file plus environment variables in order to stored configuration parameters, and is configured in Startup.cs.
 
 Web layer defines that user required actions in page services classes as below way;
 ```
@@ -279,8 +281,8 @@ public class ProductPageService : IProductPageService
 }
 ```
 ### Test Layer
-For each layer, there is a test project which includes intended layer dependencies and mock classes. So that means Core-Application-Infrastructure and Web layer has their own test layer. By this way this test projects also divided by unit, functional and integration tests defined by in which layer it is implemented. 
-Test projects using xunit and Mock libraries.  xunit, because that's what ASP.NET Core uses internally to test the product. Moq, because perform to create fake objects clearly and its very modular.
+For each layer, there is a test project which includes intended layer dependencies and mock classes. So that means Core-Application-Infrastructure and Web layer has their own test layer. By this way this test projects also divided by **unit, functional and integration tests** defined by in which layer it is implemented. 
+Test projects using **xunit and Mock libraries**.  xunit, because that's what ASP.NET Core uses internally to test the product. Moq, because perform to create fake objects clearly and its very modular.
 
 
 ## Technologies
