@@ -1,7 +1,7 @@
 # What is AspnetRun ?
-A **starter kit** for your next web application. Boilerplate for **ASP.NET Core reference application** with **Entity Framework Core**, demonstrating a layered application architecture with DDD best practices. Implements **NLayer architecture** (Core, Application, Infrastructure and Presentation Layers) and **Domain Driven Design** (Entities, Repositories, Domain/Application Services, DTO's...) 
+A **starter kit** for your next web application. Boilerplate for **ASP.NET Core reference application** with **Entity Framework Core**, demonstrating a layered application architecture with DDD best practices. Implements NLayer **Hexagonal architecture** (Core, Application, Infrastructure and Presentation Layers) and **Domain Driven Design** (Entities, Repositories, Domain/Application Services, DTO's...) 
 and aimed to be a **Clean Architecture**, with applying **SOLID principles** in order to use for a project template. 
-Also implements and provides a good infrastructure to implement **best practices** and using **design patterns** such as **Dependency Injection**, logging, validation, exception handling, localization and so on.
+Also implements and provides a good infrastructure to implement **best practices** like **loosely-coupled, dependency-inverted** architecture and using **design patterns** such as **Dependency Injection**, logging, validation, exception handling, localization and so on.
 
 You can check full repository documentations and step by step development of **100+ page eBook PDF** from here - **http://www.aspnetrun.com/Book**. Also basic introduction of book and project structure exists on **[github wiki](https://github.com/aspnetrun/run-core/wiki)**. 
 
@@ -129,7 +129,7 @@ Repository include layers divided by 4;
     * Mapper
 
 ### Core Layer
-Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation.
+Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation. The Core project is the center of the Clean Architecture design, and all other project dependencies should point toward it. 
 
 #### Entities
 Includes EF Entities which creates sql table with EF Code First Aproach. Some Aggregate folders holds entity and aggregates.
@@ -176,9 +176,13 @@ This specs runs when EF commands working with passing spec. This specs implement
 
 ### Infrastructure Layer
 Implementation of Core interfaces in this project with Entity Framework Core and other dependencies.
+Most of your application's dependence on external resources should be implemented in classes defined in the Infrastructure project. These classes must implement the interfaces defined in Core. If you have a very large project with many dependencies, it may make sense to have more than one Infrastructure project (eg Infrastructure.Data), but in most projects one Infrastructure project that contains folders works well.
+This could be includes, for example, e-mail providers, file access, web api clients, etc. For now this repository only dependend sample data access and basic domain actions, by this way there will be no direct links to your Core or UI projects.
 
 #### Data
 Includes EF Context and tables in this folder. When new entity created, it should add to context and configure in context.
+The Infrastructure project depends on Microsoft.EntityFrameworkCore.SqlServer and EF.Core related nuget packages, you can check nuget packages of Infrastructure layer. If you want to change your data access layer, it can easily be replaced with a lighter-weight ORM like Dapper. 
+
 #### Migrations
 EF add-migration classes.
 #### Repository
@@ -227,6 +231,8 @@ In this layer we can add validation , authorization, logging, exception handling
 
 ### Web Layer
 Development of UI Logic with implementation. Interfaces drives business requirements and implementations in this layer.
+The application's main starting point is the ASP.NET Core web project. This is a classical console application, with a public static void Main method in Program.cs. It currently uses the default ASP.NET Core project template which based on Razor Pages templates. This includes appsettings.json file plus environment variables in order to stored configuration parameters, and is configured in Startup.cs.
+
 Web layer defines that user required actions in page services classes as below way;
 ```
 public interface IProductPageService
