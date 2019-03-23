@@ -3,7 +3,7 @@ A **starter kit** for your next web application. Boilerplate for **ASP.NET Core 
 and aimed to be a **Clean Architecture**, with applying **SOLID principles** in order to use for a project template. 
 Also implements and provides a good infrastructure to implement **best practices** and using **design patterns** such as **Dependency Injection**, logging, validation, exception handling, localization and so on.
 
-You can check full repository documentations and step by step development of **100+ page eBook PDF** from here - http://www.aspnetrun.com/Book. Also basic introduction of book and project structure exists on [wiki](https://github.com/aspnetrun/run-core/wiki). 
+You can check full repository documentations and step by step development of **100+ page eBook PDF** from here - http://www.aspnetrun.com/Book. Also basic introduction of book and project structure exists on **[github wiki](https://github.com/aspnetrun/run-core/wiki)**. 
 
 # AspnetRun Repositories
 There are **2 types** of aspnetrun repositories;
@@ -22,7 +22,7 @@ Here is CRUD operations of aspnetrun-core template project;
 **run-core** is a general purpose to implement the **Default Web Application template of .Net** with **layered architecture** for building modern web applications built on latest ASP.NET Core & Web API & EF Core technologies. These repositories will be **updated regularly**, so when **[Blazor](https://blazor.net/)** will be avaible, this repo also will be **Single Page Web Applcation over the Web Assembly**. We are following Microsoft Web Technologies very closely so we will update accordingly **Microsoft Default Web Application stack**.
 
 ## Give a Star! :star:
-If you liked the project or if AspnetRun helped you, please give a star. And also please fork this repository and send us pull-requests.
+If you liked the project or if AspnetRun helped you, please **give a star**. And also please **fork** this repository and send us **pull-requests**. If you find any problem please open **issue**.
 
 ## Getting Started
 Use these instructions to get the project up and running.
