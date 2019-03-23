@@ -38,15 +38,15 @@ You will need the following tools:
 Follow these steps to get your development environment set up:
 1. Clone the repository
 2. At the root directory, restore required packages by running:
-```
+```csharp
 dotnet restore
 ```
 3. Next, build the solution by running:
-```
+```csharp
 dotnet build
 ```
 4. Next, within the AspnetRun.Web directory, launch the back end by running:
-```
+```csharp
 dotnet run
 ```
 5. Launch http://localhost:5400/ in your browser to view the Web UI.
@@ -57,7 +57,7 @@ If you have **Visual Studio** after cloning Open solution with your IDE, AspnetR
 After cloning or downloading the sample you should be able to run it using an In Memory database immediately. The default configuration of Entity Framework Database is **"InMemoryDatabase"**.
 If you wish to use the project with a persistent database, you will need to run its Entity Framework Core **migrations** before you will be able to run the app, and update the ConfigureDatabases method in **Startup.cs** (see below).
 
-```
+```csharp
 public void ConfigureDatabases(IServiceCollection services)
 {
     // use in-memory database
@@ -76,12 +76,12 @@ public void ConfigureDatabases(IServiceCollection services)
 
 2. Open a command prompt in the Web folder and execute the following commands:
 
-```
+```csharp
 dotnet restore
 dotnet ef database update -c AspnetRunContext -p ../AspnetRun.Infrastructure/AspnetRun.Infrastructure.csproj -s AspnetRun.Web.csproj
 ```
 Or you can direct call ef commands from Visual Studio **Package Manager Console**. Open Package Manager Console, set default project to AspnetRun.Infrastructure and run below command;
-```
+```csharp
 update-database
 ```
 These commands will create aspnetrun database which include Product and Category table. You can see from **AspnetRunContext.cs**.
@@ -89,7 +89,7 @@ These commands will create aspnetrun database which include Product and Category
 The first time you run the application, it will seed aspnetrun sql server database with a few data such that you should see products and categories.
 
 If you modify-change or add new some of entities to Core project, you should run ef migrate commands in order to update your database as the same way but below commands;
-```
+```csharp
 add migration YourCustomEntityChanges
 update-database
 ```
@@ -137,7 +137,7 @@ Development of Domain Logic with abstraction. Interfaces drives business require
 Includes Entity Framework Core Entities which creates sql table with **Entity Framework Core Code First Aproach**. Some Aggregate folders holds entity and aggregates.
 You can see example of **code-first** Entity definition as below;
 
-```
+```csharp
 public class Product : BaseEntity
 {        
     public string ProductName { get; set; }
@@ -196,7 +196,7 @@ Custom services implementation, like email, cron jobs etc.
 Development of **Domain Logic with implementation**. Interfaces drives business requirements and implementations in this layer.
 Application layer defines that user required actions in app services classes as below way;
 
-```
+```csharp
 public interface IProductAppService
 {
     Task<IEnumerable<ProductDto>> GetProductList();
@@ -209,7 +209,7 @@ public interface IProductAppService
 }
 ```
 Also implementation located same places in order to choose different implementation at runtime when DI bootstrapped.
-``` 
+```csharp
 public class ProductAppService : IProductAppService
 {
     private readonly IProductRepository _productRepository;
@@ -236,7 +236,7 @@ Development of UI Logic with implementation. Interfaces drives business requirem
 The application's main **starting point** is the ASP.NET Core web project. This is a classical console application, with a public static void Main method in Program.cs. It currently uses the default **ASP.NET Core project template** which based on **Razor Pages** templates. This includes appsettings.json file plus environment variables in order to stored configuration parameters, and is configured in Startup.cs.
 
 Web layer defines that user required actions in page services classes as below way;
-```
+```csharp
 public interface IProductPageService
 {
     Task<IEnumerable<ProductViewModel>> GetProducts(string productName);
@@ -249,7 +249,7 @@ public interface IProductPageService
 }
 ```
 Also implementation located same places in order to choose different implementation at runtime when DI bootstrapped.
-```
+```csharp
 public class ProductPageService : IProductPageService
 {
     private readonly IProductAppService _productAppService;
