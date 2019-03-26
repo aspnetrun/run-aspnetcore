@@ -3,7 +3,7 @@ A **starter kit** for your next **ASP.NET Core** web application. Boilerplate fo
 and aimed to be a **Clean Architecture**, with applying **SOLID principles** in order to use for a project template. 
 Also implements **best practices** like **loosely-coupled, dependency-inverted** architecture and using **design patterns** such as **Dependency Injection**, logging, validation, exception handling, localization and so on.
 
-You can check full repository documentations and step by step development of **100+ page eBook PDF** from here - **http://www.aspnetrun.com/Book**. Also detail introduction of book and project structure exists on **[50+ page of github wiki](https://github.com/aspnetrun/run-core/wiki)**. 
+You can check full repository documentations and step by step development of **[100+ page eBook PDF](http://www.aspnetrun.com/Book)** from here - **http://www.aspnetrun.com/Book**. Also detail introduction of book and project structure exists on **[50+ page of github wiki](https://github.com/aspnetrun/run-core/wiki)**. 
 
 # AspnetRun Repositories
 There are **2 types** of aspnetrun repositories;
