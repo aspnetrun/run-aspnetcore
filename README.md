@@ -11,8 +11,8 @@ There are **2 types** of aspnetrun repositories;
 * **[run-angular](https://github.com/aspnetrun/run-angular)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and Angular for frontend framework. 
 
 And there are 2 sample repositories which are implemented base repository and **applying real-world examples** with developing new features for example Identity, Localization etc..
-* [run-aspnetcore-realworld](https://github.com/aspnetrun/run-aspnetcore-realworld) - implemented this repository and build **sample of eCommerce reference application** on Multi-Page Web Applications(MPA) using ASP.NET Core Razor Pages templates.
-* [run-angular-realworld](https://github.com/aspnetrun/run-angular-realworld) - implemented run-angular repository and build **sample of eCommerce reference application** on Single Page Web Application(SPA) architecture using ASP.NET Core + Angular.
+* **[run-aspnetcore-realworld](https://github.com/aspnetrun/run-aspnetcore-realworld)** - implemented this repository and build **sample of eCommerce reference application** on Multi-Page Web Applications(MPA) using ASP.NET Core Razor Pages templates.
+* **[run-angular-realworld](https://github.com/aspnetrun/run-angular-realworld)** - implemented run-angular repository and build **sample of eCommerce reference application** on Single Page Web Application(SPA) architecture using ASP.NET Core + Angular.
 
 # run-aspnetcore
 Here is CRUD operations of aspnetrun-core template project;
