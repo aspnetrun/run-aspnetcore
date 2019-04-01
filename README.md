@@ -7,7 +7,7 @@ You can check full repository documentations and step by step development of **[
 
 # AspnetRun Repositories
 There are **2 types** of aspnetrun repositories;
-* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core and Razor Components templates with new aspnet core approach with SignalR. **YOU ARE HERE.**
+* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core and **Razor Components** templates with new aspnet core server-side rendering approach and build real-time communication with SignalR. **YOU ARE HERE.**
 * **[run-angular](https://github.com/aspnetrun/run-angular)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and Angular for frontend framework. 
 
 And there are 2 sample repositories which are implemented base repository and **applying real-world examples** with developing new features for example Identity, Localization etc..
