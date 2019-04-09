@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AspnetRun.Core.Entities;
-using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Infrastructure.Data;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 

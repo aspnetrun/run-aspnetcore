@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspnetRun.Infrastructure.Persistence
+namespace AspnetRun.Infrastructure.Data
 {
     public class AspnetRunContextSeed
     {

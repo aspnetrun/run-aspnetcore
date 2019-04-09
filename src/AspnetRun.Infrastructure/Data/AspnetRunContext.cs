@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AspnetRun.Infrastructure.Persistence
+namespace AspnetRun.Infrastructure.Data
 {
     public class AspnetRunContext : DbContext
     {

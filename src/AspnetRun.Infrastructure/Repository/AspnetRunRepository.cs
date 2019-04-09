@@ -1,6 +1,6 @@
 ﻿using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
-using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

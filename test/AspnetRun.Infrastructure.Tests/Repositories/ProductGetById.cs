@@ -1,4 +1,4 @@
-﻿using AspnetRun.Infrastructure.Persistence;
+﻿using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Infrastructure.Tests.Builders;
 using Microsoft.EntityFrameworkCore;

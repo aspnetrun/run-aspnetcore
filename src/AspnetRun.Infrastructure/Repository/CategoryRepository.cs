@@ -1,7 +1,7 @@
 ﻿using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Specifications;
-using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Infrastructure.Data;
 using System.Linq;
 using System.Threading.Tasks;
 

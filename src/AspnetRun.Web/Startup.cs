@@ -3,7 +3,7 @@ using AspnetRun.Application.Services;
 using AspnetRun.Core;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Infrastructure.Logging;
-using AspnetRun.Infrastructure.Persistence;
+using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Web.HealthChecks;
 using AspnetRun.Web.Interfaces;
