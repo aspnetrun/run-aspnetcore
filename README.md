@@ -7,7 +7,7 @@ You can check full repository documentations and step by step development of **[
 
 # AspnetRun Repositories
 There are **2 types** of aspnetrun repositories;
-* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core and **Razor Components** templates with new aspnet core server-side rendering approach and build real-time communication with SignalR. **YOU ARE HERE.**
+* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building traditional Multi-Page Web Applications(MPA) using ASP.NET Core & EF.Core and **Razor Pages** templates with default aspnet core server-side rendering approach. **YOU ARE HERE.**
 * **[run-angular](https://github.com/aspnetrun/run-angular)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and Angular for frontend framework. 
 
 And there are 2 sample repositories which are implemented base repository and **applying real-world examples** with developing new features for example Identity, Localization etc..
@@ -30,7 +30,7 @@ Use these instructions to get the project up and running.
 ### Prerequisites
 You will need the following tools:
 
-* [Visual Studio Code or Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
 * [.Net Core 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core/2.2)
 * EF Core 2.2 or later
 
