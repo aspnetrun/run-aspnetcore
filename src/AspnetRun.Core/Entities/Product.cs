@@ -5,7 +5,11 @@ using System.Text;
 namespace AspnetRun.Core.Entities
 {
     public class Product : BaseEntity
-    {        
+    {
+        public Product()
+        {
+        }
+
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }
         public decimal? UnitPrice { get; set; }

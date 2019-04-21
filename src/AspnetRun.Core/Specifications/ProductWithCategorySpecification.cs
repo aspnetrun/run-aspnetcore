@@ -10,7 +10,7 @@ namespace AspnetRun.Core.Specifications
             AddInclude(p => p.Category);
         }
 
-        public ProductWithCategorySpecification() : base(null)            
+        public ProductWithCategorySpecification() : base(null)
         {
             AddInclude(p => p.Category);
         }
