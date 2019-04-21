@@ -1,8 +1,5 @@
 ﻿using AspnetRun.Core.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace AspnetRun.Core.Tests.Entities
@@ -23,6 +20,5 @@ namespace AspnetRun.Core.Tests.Entities
             Assert.Equal(_testCategoryId, category.Id);
             Assert.Equal(_testProductId, firstItem.Id);
         }
-
     }
 }
