@@ -14,7 +14,7 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
         private readonly AspnetRunContext _aspnetRunContext;
         private readonly ProductRepository _productRepository;
         private readonly ITestOutputHelper _output;
-        private ProductBuilder ProductBuilder { get; } = new ProductBuilder();        
+        private ProductBuilder ProductBuilder { get; } = new ProductBuilder();
 
         public ProductTests(ITestOutputHelper output)
         {
