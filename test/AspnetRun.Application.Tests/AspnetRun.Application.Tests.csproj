@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,6 +16,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\AspnetRun.Application\AspnetRun.Application.csproj" />
     <ProjectReference Include="..\..\src\AspnetRun.Core\AspnetRun.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Builders\" />
   </ItemGroup>
 
 </Project>
