@@ -8,13 +8,7 @@ namespace AspnetRun.Core.Tests.Entities
 {
     public class ProductTests
     {
-        // USE CASE :  Add_ShoppingCartItem
-        // USE CASE :  Add_ShoppingCartItem_Increment_Quantity
-        // USE CASE :  Add_ShoppingCartItem_Increment_UnitPrice
-        // USE CASE :  Add_2_ShoppingCartItem
-        // USE CASE :  Update_ShoppingCartItem_Quantity
-        // USE CASE :  Remove_ShoppingCartItem
-
+        // USE CASE :  Create_Product        
 
         private int _testProductId = 2;
         private int _testCategoryId = 3;
@@ -33,8 +27,5 @@ namespace AspnetRun.Core.Tests.Entities
             Assert.Equal(_testUnitPrice, product.UnitPrice);
             Assert.Equal(_testQuantity, product.UnitsInStock);
         }
-
-
-
     }
 }
