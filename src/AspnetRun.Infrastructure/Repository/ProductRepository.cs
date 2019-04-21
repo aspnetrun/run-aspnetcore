@@ -19,10 +19,11 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IEnumerable<Product>> GetProductListAsync()
         {
-            // return await GetAllAsync();
-
             var spec = new ProductWithCategorySpecification();
             return await GetAsync(spec);
+
+            // second way
+            // return await GetAllAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
@@ -30,13 +31,15 @@ namespace AspnetRun.Infrastructure.Repository
             var spec = new ProductWithCategorySpecification(productName);
             return await GetAsync(spec);
 
+            // second way
             // return await GetAsync(x => x.ProductName.ToLower().Contains(productName.ToLower()));
 
+            // third way
             //return await _dbContext.Products
             //    .Where(x => x.ProductName.Contains(productName))
             //    .ToListAsync();
         }
-        
+
         public async Task<IEnumerable<Product>> GetProductByCategoryAsync(int categoryId)
         {
             return await _dbContext.Products

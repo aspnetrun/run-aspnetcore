@@ -8,15 +8,15 @@ namespace AspnetRun.Infrastructure.Tests.Builders
     public class ProductBuilder
     {
         private Product _product;
-        public int TestProductId { get; } = 5;
+        public int TestProductId => 5;
         public string TestProductName => "Test Product Name";
-        public int TestCategoryId { get; } = 8;
+        public int TestCategoryId => 123;
 
-        public decimal TestUnitPrice = 1.23m;
-        public short TestUnitInStock = 4;
-        public short TestUnitsOnOrder = 4;
-        public short ReOrderLevel = 4;
-        public bool Discontinued = true;
+        public decimal TestUnitPrice => 1.23m;
+        public short TestUnitInStock => 4;
+        public short TestUnitsOnOrder => 4;
+        public short ReOrderLevel => 4;
+        public bool Discontinued => true;
 
         public ProductBuilder()
         {
