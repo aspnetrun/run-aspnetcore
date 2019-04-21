@@ -1,4 +1,5 @@
-﻿using AspnetRun.Application.Services;
+﻿using AspnetRun.Application.Exceptions;
+using AspnetRun.Application.Services;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using Moq;
@@ -23,7 +24,7 @@ namespace AspnetRun.Application.Tests.Services
         }      
 
         [Fact]
-        public async Task Should_GetOnce_WhenAddedTwoProduct()
+        public async Task Get_Product_List()
         {
             var category = Category.Create(It.IsAny<int>(), It.IsAny<string>());
             var product1 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
@@ -37,13 +38,13 @@ namespace AspnetRun.Application.Tests.Services
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product2);
 
             var productService = new ProductAppService(_mockProductRepository.Object, _mockAppLogger.Object);
-            var productList = productService.GetProductList();
+            var productList = await productService.GetProductList();
 
             _mockProductRepository.Verify(x => x.GetProductListAsync(), Times.Once);
         }
 
         [Fact]
-        public async Task Create_Product_Should_Validate_And_After_Insert()
+        public async Task Create_New_Product()
         {
             var category = Category.Create(It.IsAny<int>(), It.IsAny<string>());
             var product = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
@@ -57,6 +58,21 @@ namespace AspnetRun.Application.Tests.Services
 
             _mockProductRepository.Verify(x => x.GetByIdAsync(It.IsAny<int>()), Times.Once);
             _mockProductRepository.Verify(x => x.AddAsync(product), Times.Once);
+        }
+
+        [Fact]
+        public async Task Create_New_Product_Validate_If_Exist()
+        {
+            var category = Category.Create(It.IsAny<int>(), It.IsAny<string>());
+            var product = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());            
+
+            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product);
+            _mockProductRepository.Setup(x => x.AddAsync(product)).ReturnsAsync(product);
+
+            var productService = new ProductAppService(_mockProductRepository.Object, _mockAppLogger.Object);
+
+            await Assert.ThrowsAsync<ApplicationException>(async () =>
+                await productService.Create(new Dtos.ProductDto { Id = product.Id, CategoryId = product.CategoryId, ProductName = product.ProductName }));
         }
     }
 }
