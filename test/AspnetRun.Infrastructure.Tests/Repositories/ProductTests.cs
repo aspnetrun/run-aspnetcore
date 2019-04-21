@@ -2,6 +2,7 @@
 using AspnetRun.Infrastructure.Repository;
 using AspnetRun.Infrastructure.Tests.Builders;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -37,6 +38,19 @@ namespace AspnetRun.Infrastructure.Tests.Repositories
             var productFromRepo = await _productRepository.GetByIdAsync(productId);
             Assert.Equal(ProductBuilder.TestProductId, productFromRepo.Id);
             Assert.Equal(ProductBuilder.TestCategoryId, productFromRepo.CategoryId);
+        }
+
+        [Fact]
+        public async Task Get_Product_By_Name()
+        {
+            var existingProduct = ProductBuilder.WithDefaultValues();
+            _aspnetRunContext.Products.Add(existingProduct);
+            _aspnetRunContext.SaveChanges();
+            var productName = existingProduct.ProductName;
+            _output.WriteLine($"ProductName: {productName}");
+            
+            var productListFromRepo = await _productRepository.GetProductByNameAsync(productName);
+            Assert.Equal(ProductBuilder.TestProductName, productListFromRepo.ToList().First().ProductName);
         }
     }
 }
