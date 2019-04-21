@@ -18,8 +18,4 @@
     <ProjectReference Include="..\..\src\AspnetRun.Core\AspnetRun.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Builders\" />
-  </ItemGroup>
-
 </Project>

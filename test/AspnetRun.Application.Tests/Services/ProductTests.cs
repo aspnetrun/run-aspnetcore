@@ -9,10 +9,11 @@ namespace AspnetRun.Application.Tests.Services
 {
     public class ProductTests
     {
+        // NOTE : This layer we are not loaded database objects, test functionality of application layer
+
         private Mock<IProductRepository> _mockProductRepository;
         private Mock<IAsyncRepository<Category>> _mockCategoryRepository;
         private Mock<IAppLogger<ProductAppService>> _mockAppLogger;
-
 
         public ProductTests()
         {

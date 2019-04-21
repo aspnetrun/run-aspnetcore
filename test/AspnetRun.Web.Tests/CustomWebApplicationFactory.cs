@@ -28,7 +28,7 @@ namespace AspnetRun.Web.Tests
                 // database for testing.
                 services.AddDbContext<AspnetRunContext>(options =>
                 {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
+                    options.UseInMemoryDatabase("AspnetRun");
                     options.UseInternalServiceProvider(provider);
                 });
 
