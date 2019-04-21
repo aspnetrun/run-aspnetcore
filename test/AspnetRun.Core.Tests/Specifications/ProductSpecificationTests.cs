@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AspnetRun.Core.Tests.Specifications
 {
-    public class ProductWithCategorySpecificationTests
+    public class ProductSpecificationTests
     {
 
     }
