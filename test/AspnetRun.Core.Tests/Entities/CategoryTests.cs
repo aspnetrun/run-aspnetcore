@@ -7,16 +7,14 @@ using Xunit;
 
 namespace AspnetRun.Core.Tests.Entities
 {
-    public class CategoryAddProduct
+    public class CategoryTests
     {
-        private int _testProductId = 3;   
+        private int _testProductId = 3;
         private int _testCategoryId = 5;
-        private string _testProductName = "Reason";
-        private decimal _testUnitPrice = 1.23m;
-        private short _testQuantity = 2;
+        private string _testProductName = "Reason";        
 
         [Fact]
-        public void AddsProductIfNotPresent()
+        public void Adds_Product_Into_Category()
         {
             var category = Category.Create(_testCategoryId, "newCategory");
             category.AddProduct(_testProductId, _testProductName);
@@ -25,7 +23,6 @@ namespace AspnetRun.Core.Tests.Entities
             Assert.Equal(_testCategoryId, category.Id);
             Assert.Equal(_testProductId, firstItem.Id);
         }
-
 
     }
 }
