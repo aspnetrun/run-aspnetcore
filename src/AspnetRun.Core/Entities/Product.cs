@@ -14,8 +14,8 @@ namespace AspnetRun.Core.Entities
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
         public int CategoryId { get; set; }
-        public string ProductReason { get; set; }        
-        public Category Category { get; set; }        
+        public string ProductReason { get; set; }
+        public Category Category { get; set; }
 
         public static Product Create(int productId, int categoryId, string name, decimal? unitPrice = null, short? unitsInStock = null, short? unitsOnOrder = null, short? reorderLevel = null, bool discontinued = false)
         {

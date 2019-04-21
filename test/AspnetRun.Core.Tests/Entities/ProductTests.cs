@@ -6,8 +6,16 @@ using Xunit;
 
 namespace AspnetRun.Core.Tests.Entities
 {
-    public class ProductCreate
+    public class ProductTests
     {
+        // USE CASE :  Add_ShoppingCartItem
+        // USE CASE :  Add_ShoppingCartItem_Increment_Quantity
+        // USE CASE :  Add_ShoppingCartItem_Increment_UnitPrice
+        // USE CASE :  Add_2_ShoppingCartItem
+        // USE CASE :  Update_ShoppingCartItem_Quantity
+        // USE CASE :  Remove_ShoppingCartItem
+
+
         private int _testProductId = 2;
         private int _testCategoryId = 3;
         private string _testProductName = "Reason";
@@ -15,7 +23,7 @@ namespace AspnetRun.Core.Tests.Entities
         private short _testQuantity = 2;
 
         [Fact]
-        public void CreateProductIfNotPresent()
+        public void Create_Product()
         {
             var product = Product.Create(_testProductId, _testCategoryId, _testProductName, _testUnitPrice, _testQuantity, null, null, false);
 
@@ -25,6 +33,8 @@ namespace AspnetRun.Core.Tests.Entities
             Assert.Equal(_testUnitPrice, product.UnitPrice);
             Assert.Equal(_testQuantity, product.UnitsInStock);
         }
+
+
 
     }
 }
