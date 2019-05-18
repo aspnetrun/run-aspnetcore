@@ -7,8 +7,8 @@ You can check full repository documentations and step by step development of **[
 
 # AspnetRun Repositories
 Here you can find all of the **aspnetrun repositories from easy to difficult**, Also this list can be track a **learning path** of asp.net core respectively;
-* **[run-aspnetcore-basic](https://github.com/aspnetrun/run-aspnetcore-basic)** - intented to building fastest ASP.NET Core Default Web Application template. This solution **only one solution one project** for **idea generation** with Asp.Net Core. **YOU ARE HERE.**
-* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building traditional Multi-Page Web Applications(MPA) using ASP.NET Core & EF.Core and **Razor Pages** templates with default aspnet core server-side rendering approach.
+* **[run-aspnetcore-basic](https://github.com/aspnetrun/run-aspnetcore-basic)** - intented to building fastest ASP.NET Core Default Web Application template. This solution **only one solution one project** for **idea generation** with Asp.Net Core. 
+* **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intented to building Multi-Page Web Applications(MPA) using ASP.NET Core & EF.Core in **Clean Architecture** with default aspnet core server-side rendering approach. **YOU ARE HERE.**
 * **[run-aspnetcore-spa](https://github.com/aspnetrun/run-aspnetcore-spa)** - intented to building **Single-Page Web Applications(SPA)** using only ASP.NET Core **without any frontend framework**. This comes with **Blazor** framework in asp.net core 3.x.
 * **[run-aspnetcore-angular](https://github.com/aspnetrun/run-angular)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and **Angular** for frontend framework.
 
