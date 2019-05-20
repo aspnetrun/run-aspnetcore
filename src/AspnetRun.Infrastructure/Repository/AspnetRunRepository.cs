@@ -1,5 +1,6 @@
 ﻿using AspnetRun.Core.Entities.Base;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Repositories.Base;
 using AspnetRun.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
 {
-    public class AspnetRunRepository<T> : IAsyncRepository<T> where T : Entity
+    public class AspnetRunRepository<T> : IRepository<T> where T : Entity
     {
         protected readonly AspnetRunContext _dbContext;
 

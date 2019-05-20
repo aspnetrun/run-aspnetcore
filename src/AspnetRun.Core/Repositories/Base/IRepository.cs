@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Core.Repositories.Base
 {
-    public interface IRepositoryBase<T> where T : Entity
+    public interface IRepository<T> where T : Entity
     {
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);

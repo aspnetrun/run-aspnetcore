@@ -6,6 +6,7 @@ using AspnetRun.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AspnetRun.Core.Repositories;
 
 namespace AspnetRun.Application.Services
 {

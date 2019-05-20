@@ -2,6 +2,8 @@
 using AspnetRun.Application.Services;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Repositories.Base;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,13 +15,13 @@ namespace AspnetRun.Application.Tests.Services
         // NOTE : This layer we are not loaded database objects, test functionality of application layer
 
         private Mock<IProductRepository> _mockProductRepository;
-        private Mock<IAsyncRepository<Category>> _mockCategoryRepository;
+        private Mock<IRepository<Category>> _mockCategoryRepository;
         private Mock<IAppLogger<ProductAppService>> _mockAppLogger;
 
         public ProductTests()
         {
             _mockProductRepository = new Mock<IProductRepository>();
-            _mockCategoryRepository = new Mock<IAsyncRepository<Category>>();
+            _mockCategoryRepository = new Mock<IRepository<Category>>();
             _mockAppLogger = new Mock<IAppLogger<ProductAppService>>();
         }      
 

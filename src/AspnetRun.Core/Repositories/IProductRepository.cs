@@ -1,12 +1,11 @@
 ﻿using AspnetRun.Core.Entities;
-using System;
+using AspnetRun.Core.Repositories.Base;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace AspnetRun.Core.Interfaces
+namespace AspnetRun.Core.Repositories
 {
-    public interface IProductRepository : IAsyncRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         Task<IEnumerable<Product>> GetProductListAsync();
         Task<IEnumerable<Product>> GetProductByNameAsync(string productName);

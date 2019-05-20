@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AspnetRun.Core.Repositories;
+using AspnetRun.Core.Repositories.Base;
 
 namespace AspnetRun.Web
 {
@@ -73,7 +75,7 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(AspnetRunRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(AspnetRunRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
