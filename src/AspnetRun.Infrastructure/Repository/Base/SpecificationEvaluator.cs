@@ -4,7 +4,7 @@ using AspnetRun.Core.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace AspnetRun.Infrastructure.Repository
+namespace AspnetRun.Infrastructure.Repository.Base
 {
     public class SpecificationEvaluator<T> where T : Entity
     {

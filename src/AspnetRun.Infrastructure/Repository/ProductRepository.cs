@@ -2,6 +2,7 @@
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Data;
+using AspnetRun.Infrastructure.Repository.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
 {
-    public class ProductRepository : AspnetRunRepository<Product>, IProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         public ProductRepository(AspnetRunContext dbContext) : base(dbContext)
         {

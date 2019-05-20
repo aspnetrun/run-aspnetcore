@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Repositories.Base;
 using AspnetRun.Core.Configuration;
+using AspnetRun.Infrastructure.Repository.Base;
 
 namespace AspnetRun.Web
 {
@@ -76,7 +77,7 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
-            services.AddScoped(typeof(IRepository<>), typeof(AspnetRunRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));

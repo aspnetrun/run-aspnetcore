@@ -9,13 +9,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace AspnetRun.Infrastructure.Repository
+namespace AspnetRun.Infrastructure.Repository.Base
 {
-    public class AspnetRunRepository<T> : IRepository<T> where T : Entity
+    public class Repository<T> : IRepository<T> where T : Entity
     {
         protected readonly AspnetRunContext _dbContext;
 
-        public AspnetRunRepository(AspnetRunContext dbContext)
+        public Repository(AspnetRunContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
@@ -49,7 +49,7 @@ namespace AspnetRun.Infrastructure.Repository
         {
             IQueryable<T> query = _dbContext.Set<T>();
             if (disableTracking) query = query.AsNoTracking();
-            
+
             if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);
 
             if (predicate != null) query = query.Where(predicate);
@@ -95,6 +95,6 @@ namespace AspnetRun.Infrastructure.Repository
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-        }       
+        }
     }
 }
