@@ -1,5 +1,5 @@
-﻿using AspnetRun.Application.Dtos;
-using AspnetRun.Application.Interfaces;
+﻿using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Models;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
@@ -12,12 +12,12 @@ namespace AspnetRun.Web.Services
 {
     public class ProductPageService : IProductPageService
     {
-        private readonly IProductAppService _productAppService;
-        private readonly ICategoryAppService _categoryAppService;
+        private readonly IProductService _productAppService;
+        private readonly ICategoryService _categoryAppService;
         private readonly IMapper _mapper;
         private readonly ILogger<ProductPageService> _logger;
 
-        public ProductPageService(IProductAppService productAppService, ICategoryAppService categoryAppService, IMapper mapper, ILogger<ProductPageService> logger)
+        public ProductPageService(IProductService productAppService, ICategoryService categoryAppService, IMapper mapper, ILogger<ProductPageService> logger)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
@@ -62,7 +62,7 @@ namespace AspnetRun.Web.Services
 
         public async Task<ProductViewModel> CreateProduct(ProductViewModel productViewModel)
         {
-            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            var mapped = _mapper.Map<ProductModel>(productViewModel);
             if (mapped == null)
                 throw new Exception($"Entity could not be mapped.");
 
@@ -75,7 +75,7 @@ namespace AspnetRun.Web.Services
 
         public async Task UpdateProduct(ProductViewModel productViewModel)
         {
-            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            var mapped = _mapper.Map<ProductModel>(productViewModel);
             if (mapped == null)
                 throw new Exception($"Entity could not be mapped.");
 
@@ -85,7 +85,7 @@ namespace AspnetRun.Web.Services
 
         public async Task DeleteProduct(ProductViewModel productViewModel)
         {
-            var mapped = _mapper.Map<ProductDto>(productViewModel);
+            var mapped = _mapper.Map<ProductModel>(productViewModel);
             if (mapped == null)
                 throw new Exception($"Entity could not be mapped.");
 

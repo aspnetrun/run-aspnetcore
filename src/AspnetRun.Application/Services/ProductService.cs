@@ -1,56 +1,56 @@
-﻿using AspnetRun.Application.Dtos;
-using AspnetRun.Application.Mapper;
-using AspnetRun.Application.Interfaces;
-using AspnetRun.Core.Entities;
-using AspnetRun.Core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AspnetRun.Core.Entities;
+using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Repositories;
+using AspnetRun.Application.Models;
+using AspnetRun.Application.Mapper;
+using AspnetRun.Application.Interfaces;
 
 namespace AspnetRun.Application.Services
 {
     // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
-    public class ProductAppService : IProductAppService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        private readonly IAppLogger<ProductAppService> _logger;
+        private readonly IAppLogger<ProductService> _logger;
 
-        public ProductAppService(IProductRepository productRepository, IAppLogger<ProductAppService> logger)
+        public ProductService(IProductRepository productRepository, IAppLogger<ProductService> logger)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<IEnumerable<ProductDto>> GetProductList()
+        public async Task<IEnumerable<ProductModel>> GetProductList()
         {
             var productList = await _productRepository.GetProductListAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductModel>>(productList);
             return mapped;
         }
 
-        public async Task<ProductDto> GetProductById(int productId)
+        public async Task<ProductModel> GetProductById(int productId)
         {
             var product = await _productRepository.GetByIdAsync(productId);
-            var mapped = ObjectMapper.Mapper.Map<ProductDto>(product);
+            var mapped = ObjectMapper.Mapper.Map<ProductModel>(product);
             return mapped;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetProductByName(string productName)
+        public async Task<IEnumerable<ProductModel>> GetProductByName(string productName)
         {
             var productList = await _productRepository.GetProductByNameAsync(productName);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductModel>>(productList);
             return mapped;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetProductByCategory(int categoryId)
+        public async Task<IEnumerable<ProductModel>> GetProductByCategory(int categoryId)
         {
             var productList = await _productRepository.GetProductByCategoryAsync(categoryId);
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductDto>>(productList);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<ProductModel>>(productList);
             return mapped;
         }
 
-        public async Task<ProductDto> Create(ProductDto entityDto)
+        public async Task<ProductModel> Create(ProductModel entityDto)
         {
             await ValidateProductIfExist(entityDto);
 
@@ -61,11 +61,11 @@ namespace AspnetRun.Application.Services
             var newEntity = await _productRepository.AddAsync(mappedEntity);
             _logger.LogInformation($"Entity successfully added - AspnetRunAppService");
 
-            var newMappedEntity = ObjectMapper.Mapper.Map<ProductDto>(newEntity);
+            var newMappedEntity = ObjectMapper.Mapper.Map<ProductModel>(newEntity);
             return newMappedEntity;
         }
 
-        public async Task Update(ProductDto entityDto)
+        public async Task Update(ProductModel entityDto)
         {
             ValidateProductIfNotExist(entityDto);
 
@@ -77,7 +77,7 @@ namespace AspnetRun.Application.Services
             _logger.LogInformation($"Entity successfully updated - AspnetRunAppService");
         }
 
-        public async Task Delete(ProductDto entityDto)
+        public async Task Delete(ProductModel entityDto)
         {
             ValidateProductIfNotExist(entityDto);
 
@@ -89,14 +89,14 @@ namespace AspnetRun.Application.Services
             _logger.LogInformation($"Entity successfully deleted - AspnetRunAppService");
         }
 
-        private async Task ValidateProductIfExist(ProductDto entityDto)
+        private async Task ValidateProductIfExist(ProductModel entityDto)
         {
             var existingEntity = await _productRepository.GetByIdAsync(entityDto.Id);
             if (existingEntity != null)
                 throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
         }
 
-        private void ValidateProductIfNotExist(ProductDto entityDto)
+        private void ValidateProductIfNotExist(ProductModel entityDto)
         {
             var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
             if (existingEntity == null)

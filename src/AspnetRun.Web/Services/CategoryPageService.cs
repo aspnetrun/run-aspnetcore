@@ -11,10 +11,10 @@ namespace AspnetRun.Web.Services
 {
     public class CategoryPageService : ICategoryPageService
     {        
-        private readonly ICategoryAppService _categoryAppService;
+        private readonly ICategoryService _categoryAppService;
         private readonly IMapper _mapper;
 
-        public CategoryPageService(ICategoryAppService categoryAppService, IMapper mapper)
+        public CategoryPageService(ICategoryService categoryAppService, IMapper mapper)
         {
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

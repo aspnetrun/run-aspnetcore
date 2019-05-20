@@ -83,8 +83,8 @@ namespace AspnetRun.Web
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Add Application Layer
-            services.AddScoped<IProductAppService, ProductAppService>();
-            services.AddScoped<ICategoryAppService, CategoryAppService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             // Add Web Layer
             services.AddAutoMapper(); // Add AutoMapper

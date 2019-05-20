@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AspnetRun.Application.Exceptions
 {
@@ -8,6 +6,11 @@ namespace AspnetRun.Application.Exceptions
     {
         internal ApplicationException(string businessMessage)
                : base(businessMessage)
+        {
+        }
+
+        internal ApplicationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

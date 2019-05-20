@@ -1,9 +1,6 @@
-﻿using AspnetRun.Application.Dtos;
+﻿using AspnetRun.Application.Models;
 using AspnetRun.Core.Entities;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AspnetRun.Application.Mapper
 {
@@ -26,9 +23,9 @@ namespace AspnetRun.Application.Mapper
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Product, ProductDto>()
+                cfg.CreateMap<Product, ProductModel>()
                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName)).ReverseMap();
-                cfg.CreateMap<Category, CategoryDto>().ReverseMap();
+                cfg.CreateMap<Category, CategoryModel>().ReverseMap();
             });
         }
     }

@@ -1,10 +1,8 @@
-﻿using AspnetRun.Core.Entities;
-using AutoMapper;
+﻿using AspnetRun.Application.Models.Base;
 
-namespace AspnetRun.Application.Dtos
+namespace AspnetRun.Application.Models
 {
-    
-    public class ProductDto : BaseDto
+    public class ProductModel : BaseModel
     {
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }
@@ -14,6 +12,6 @@ namespace AspnetRun.Application.Dtos
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
         public int? CategoryId { get; set; }
-        public CategoryDto Category { get; set; }
+        public CategoryModel Category { get; set; }
     }
 }

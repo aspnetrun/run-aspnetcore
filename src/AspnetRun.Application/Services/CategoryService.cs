@@ -1,31 +1,29 @@
-﻿using AspnetRun.Application.Dtos;
-using AspnetRun.Application.Mapper;
+﻿using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Interfaces;
-using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using AspnetRun.Core.Repositories;
+using AspnetRun.Application.Models;
 
 namespace AspnetRun.Application.Services
 {
-    public class CategoryAppService : ICategoryAppService
+    public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IAppLogger<CategoryAppService> _logger;
+        private readonly IAppLogger<CategoryService> _logger;
 
-        public CategoryAppService(ICategoryRepository categoryRepository, IAppLogger<CategoryAppService> logger)
+        public CategoryService(ICategoryRepository categoryRepository, IAppLogger<CategoryService> logger)
         {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetCategoryList()
+        public async Task<IEnumerable<CategoryModel>> GetCategoryList()
         {
             var category = await _categoryRepository.GetAllAsync();
-            var mapped = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(category);
+            var mapped = ObjectMapper.Mapper.Map<IEnumerable<CategoryModel>>(category);
             return mapped;
         }        
         

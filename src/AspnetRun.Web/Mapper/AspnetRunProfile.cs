@@ -1,10 +1,6 @@
-﻿using AspnetRun.Application.Dtos;
+﻿using AspnetRun.Application.Models;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspnetRun.Web.Mapper
 {
@@ -12,8 +8,8 @@ namespace AspnetRun.Web.Mapper
     {
         public AspnetRunProfile()
         {
-            CreateMap<ProductDto, ProductViewModel>();
-            CreateMap<CategoryDto, CategoryViewModel>();
+            CreateMap<ProductModel, ProductViewModel>();
+            CreateMap<CategoryModel, CategoryViewModel>();
         }
     }
 }
