@@ -1,11 +1,10 @@
-﻿using System;
+﻿using AspnetRun.Core.Entities.Base;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
-    public class Category : BaseEntity
+    public class Category : Entity
     {
         public Category()
         {

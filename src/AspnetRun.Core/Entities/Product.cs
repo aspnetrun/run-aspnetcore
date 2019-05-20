@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AspnetRun.Core.Entities.Base;
 
 namespace AspnetRun.Core.Entities
 {
-    public class Product : BaseEntity
+    public class Product : Entity
     {
         public Product()
         {
