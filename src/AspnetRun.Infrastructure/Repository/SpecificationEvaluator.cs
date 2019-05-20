@@ -1,11 +1,12 @@
 ﻿using AspnetRun.Core.Entities;
+using AspnetRun.Core.Entities.Base;
 using AspnetRun.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace AspnetRun.Infrastructure.Repository
 {
-    public class SpecificationEvaluator<T> where T : BaseEntity
+    public class SpecificationEvaluator<T> where T : Entity
     {
         public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, ISpecification<T> specification)
         {

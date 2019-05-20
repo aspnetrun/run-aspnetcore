@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Core.Entities;
+using AspnetRun.Core.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Core.Interfaces
 {
-    public interface IAsyncRepository<T> where T : BaseEntity
+    public interface IAsyncRepository<T> where T : Entity
     {
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);
