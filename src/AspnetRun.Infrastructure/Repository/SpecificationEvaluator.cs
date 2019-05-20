@@ -1,6 +1,6 @@
 ﻿using AspnetRun.Core.Entities;
 using AspnetRun.Core.Entities.Base;
-using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 

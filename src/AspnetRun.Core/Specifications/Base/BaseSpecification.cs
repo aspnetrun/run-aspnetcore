@@ -1,9 +1,8 @@
-﻿using AspnetRun.Core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace AspnetRun.Core.Specifications
+namespace AspnetRun.Core.Specifications.Base
 {
     // Specification Pattern from : https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implemenation-entity-framework-core
     public abstract class BaseSpecification<T> : ISpecification<T>

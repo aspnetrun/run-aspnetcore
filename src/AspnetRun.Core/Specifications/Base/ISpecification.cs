@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace AspnetRun.Core.Interfaces
+namespace AspnetRun.Core.Specifications.Base
 {
     public interface ISpecification<T>
     {

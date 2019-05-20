@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Repositories.Base;
+using AspnetRun.Core.Configuration;
 
 namespace AspnetRun.Web
 {

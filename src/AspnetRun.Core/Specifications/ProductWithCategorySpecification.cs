@@ -1,4 +1,5 @@
 ﻿using AspnetRun.Core.Entities;
+using AspnetRun.Core.Specifications.Base;
 
 namespace AspnetRun.Core.Specifications
 {

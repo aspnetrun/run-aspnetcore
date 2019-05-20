@@ -1,5 +1,5 @@
 ﻿using AspnetRun.Core.Entities.Base;
-using AspnetRun.Core.Interfaces;
+using AspnetRun.Core.Specifications.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
