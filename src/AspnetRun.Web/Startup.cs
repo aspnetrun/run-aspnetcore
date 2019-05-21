@@ -104,9 +104,9 @@ namespace AspnetRun.Web
             services.AddDbContext<AspnetRunContext>(c =>
                 c.UseInMemoryDatabase("AspnetRunConnection"));
 
-            // use real database
-            services.AddDbContext<AspnetRunContext>(c =>
-                c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
+            //// use real database
+            //services.AddDbContext<AspnetRunContext>(c =>
+            //    c.UseSqlServer(Configuration.GetConnectionString("AspnetRunConnection")));
         }
     }
 }
