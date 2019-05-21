@@ -10,8 +10,8 @@ namespace AspnetRun.Application.Interfaces
         Task<ProductModel> GetProductById(int productId);
         Task<IEnumerable<ProductModel>> GetProductByName(string productName);
         Task<IEnumerable<ProductModel>> GetProductByCategory(int categoryId);
-        Task<ProductModel> Create(ProductModel entityDto);
-        Task Update(ProductModel entityDto);
-        Task Delete(ProductModel entityDto);
+        Task<ProductModel> Create(ProductModel productModel);
+        Task Update(ProductModel productModel);
+        Task Delete(ProductModel productModel);
     }
 }

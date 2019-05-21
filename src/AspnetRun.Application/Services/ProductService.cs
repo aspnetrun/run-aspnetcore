@@ -50,11 +50,11 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
-        public async Task<ProductModel> Create(ProductModel entityDto)
+        public async Task<ProductModel> Create(ProductModel productModel)
         {
-            await ValidateProductIfExist(entityDto);
+            await ValidateProductIfExist(productModel);
 
-            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
+            var mappedEntity = ObjectMapper.Mapper.Map<Product>(productModel);
             if (mappedEntity == null)
                 throw new ApplicationException($"Entity could not be mapped.");
 
@@ -65,42 +65,43 @@ namespace AspnetRun.Application.Services
             return newMappedEntity;
         }
 
-        public async Task Update(ProductModel entityDto)
+        public async Task Update(ProductModel productModel)
         {
-            ValidateProductIfNotExist(entityDto);
+            ValidateProductIfNotExist(productModel);
+            
+            var editProduct = await _productRepository.GetByIdAsync(productModel.Id);
+            if (editProduct == null)
+                throw new ApplicationException($"Entity could not be loaded.");
 
-            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
-            if (mappedEntity == null)
-                throw new ApplicationException($"Entity could not be mapped.");
+            ObjectMapper.Mapper.Map<ProductModel, Product>(productModel, editProduct);
 
-            await _productRepository.UpdateAsync(mappedEntity);
+            await _productRepository.UpdateAsync(editProduct);
             _logger.LogInformation($"Entity successfully updated - AspnetRunAppService");
         }
 
-        public async Task Delete(ProductModel entityDto)
+        public async Task Delete(ProductModel productModel)
         {
-            ValidateProductIfNotExist(entityDto);
+            ValidateProductIfNotExist(productModel);
+            var deletedProduct = await _productRepository.GetByIdAsync(productModel.Id);
+            if (deletedProduct == null)
+                throw new ApplicationException($"Entity could not be loaded.");
 
-            var mappedEntity = ObjectMapper.Mapper.Map<Product>(entityDto);
-            if (mappedEntity == null)
-                throw new ApplicationException($"Entity could not be mapped.");
-
-            await _productRepository.DeleteAsync(mappedEntity);
+            await _productRepository.DeleteAsync(deletedProduct);
             _logger.LogInformation($"Entity successfully deleted - AspnetRunAppService");
         }
 
-        private async Task ValidateProductIfExist(ProductModel entityDto)
+        private async Task ValidateProductIfExist(ProductModel productModel)
         {
-            var existingEntity = await _productRepository.GetByIdAsync(entityDto.Id);
+            var existingEntity = await _productRepository.GetByIdAsync(productModel.Id);
             if (existingEntity != null)
-                throw new ApplicationException($"{entityDto.ToString()} with this id already exists");
+                throw new ApplicationException($"{productModel.ToString()} with this id already exists");
         }
 
-        private void ValidateProductIfNotExist(ProductModel entityDto)
+        private void ValidateProductIfNotExist(ProductModel productModel)
         {
-            var existingEntity = _productRepository.GetByIdAsync(entityDto.Id);
+            var existingEntity = _productRepository.GetByIdAsync(productModel.Id);
             if (existingEntity == null)
-                throw new ApplicationException($"{entityDto.ToString()} with this id is not exists");
+                throw new ApplicationException($"{productModel.ToString()} with this id is not exists");
         }
     }
 }
