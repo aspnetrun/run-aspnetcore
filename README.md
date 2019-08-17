@@ -134,7 +134,7 @@ Repository include layers divided by **4 project**;
     * Pages
     * ViewModels
     * Extensions
-    * Mapper
+    * AutoMapper
 
 ### Core Layer
 Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation. The Core project is the **center of the Clean Architecture** design, and all other project dependencies should point toward it. 
