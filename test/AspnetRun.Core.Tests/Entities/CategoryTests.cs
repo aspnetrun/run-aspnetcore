@@ -8,7 +8,7 @@ namespace AspnetRun.Core.Tests.Entities
     {
         private int _testProductId = 3;
         private int _testCategoryId = 5;
-        private string _testProductName = "Reason";        
+        private string _testProductName = "Reason";
 
         //[Fact]
         //public void Adds_Product_Into_Category()

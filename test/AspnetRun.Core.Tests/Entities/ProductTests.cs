@@ -1,15 +1,10 @@
 ﻿using AspnetRun.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace AspnetRun.Core.Tests.Entities
 {
     public class ProductTests
     {
-        // USE CASE :  Create_Product        
-
         private int _testProductId = 2;
         private int _testCategoryId = 3;
         private string _testProductName = "Reason";
