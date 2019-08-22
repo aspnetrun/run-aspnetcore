@@ -32,8 +32,8 @@ namespace AspnetRun.Application.Tests.Services
             var product1 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
             var product2 = Product.Create(It.IsAny<int>(), category.Id, It.IsAny<string>());
 
-            category.AddProduct(product1.Id, It.IsAny<string>());
-            category.AddProduct(product2.Id, It.IsAny<string>());
+            //category.AddProduct(product1.Id, It.IsAny<string>());
+            //category.AddProduct(product2.Id, It.IsAny<string>());
 
             _mockCategoryRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(category);
             _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(product1);
