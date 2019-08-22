@@ -10,15 +10,15 @@ namespace AspnetRun.Core.Tests.Entities
         private int _testCategoryId = 5;
         private string _testProductName = "Reason";        
 
-        [Fact]
-        public void Adds_Product_Into_Category()
-        {
-            var category = Category.Create(_testCategoryId, "newCategory");
-            category.AddProduct(_testProductId, _testProductName);
+        //[Fact]
+        //public void Adds_Product_Into_Category()
+        //{
+        //    var category = Category.Create(_testCategoryId, "newCategory");
+        //    category.AddProduct(_testProductId, _testProductName);
 
-            var firstItem = category.Products.Single();
-            Assert.Equal(_testCategoryId, category.Id);
-            Assert.Equal(_testProductId, firstItem.Id);
-        }
+        //    var firstItem = category.Products.Single();
+        //    Assert.Equal(_testCategoryId, category.Id);
+        //    Assert.Equal(_testProductId, firstItem.Id);
+        //}
     }
 }
