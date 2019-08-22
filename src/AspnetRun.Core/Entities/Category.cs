@@ -24,14 +24,6 @@ namespace AspnetRun.Core.Entities
                 Description = description
             };
             return category;
-        }
-
-        public void AddProduct(int productId, string productName)
-        {
-            if (!Products.Any(p => p.Id == productId))
-            {
-                Products.Add(Product.Create(productId, this.Id, productName));
-            }
-        }
+        }        
     }
 }
