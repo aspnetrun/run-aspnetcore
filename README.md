@@ -292,9 +292,9 @@ Test projects using **xunit and Mock libraries**.  xunit, because that's what AS
 
 
 ## Technologies
-* .NET Core 2.2
-* ASP.NET Core 2.2
-* Entity Framework Core 2.2 
+* .NET Core 3.0
+* ASP.NET Core 3.0
+* Entity Framework Core 3.0 
 * .NET Core Native DI
 * Razor Pages
 * AutoMapper
