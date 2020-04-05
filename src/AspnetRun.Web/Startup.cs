@@ -92,7 +92,7 @@ namespace AspnetRun.Web
             services.AddScoped<ICategoryService, CategoryService>();
 
             // Add Web Layer
-            services.AddAutoMapper(); // Add AutoMapper
+            services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
