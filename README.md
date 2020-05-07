@@ -10,7 +10,7 @@ Here you can find all of the **aspnetrun repositories from easy to difficult**, 
 * **[run-aspnetcore-basics](https://github.com/aspnetrun/run-aspnetcore-basics)** - intended to building fastest ASP.NET Core Default Web Application template. This solution **only one solution one project** for **idea generation** with Asp.Net Core. 
 * **[run-aspnetcore](https://github.com/aspnetrun/run-aspnetcore)** - intended to building Multi-Page Web Applications(MPA) using ASP.NET Core & EF.Core in **Clean Architecture** with default aspnet core server-side rendering approach.
 * **[run-aspnetcore-cqrs](https://github.com/aspnetrun/run-angular)** - intended to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core, Web API Project and implement **CQRS Design Pattern**.
-* **[run-aspnetcore-microservices](https://github.com/aspnetrun/run-aspnetcore-microservices)** - intended to building **Microservices** on .Net platforms which used **Asp.Net Web API,Docker,RabbitMQ,Ocelot API Gateway,MongoDB,Redis,SqlServer,Entity Framework Core,CQRS and Clean Architecture** implementation.
+* **[run-aspnetcore-microservices](https://github.com/aspnetrun/run-aspnetcore-microservices)** - intended to building **Microservices** on .Net platforms which used **Asp.Net Web API, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, Redis, SqlServer, Entity Framework Core, CQRS and Clean Architecture** implementation.
 
 # BONUS
 And for this repo there are **implemented base repository** and **applying real-world e-commerce examples** with developing new enterprice features for example Identity, Paging, Localization etc..
