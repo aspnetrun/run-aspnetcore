@@ -23,11 +23,7 @@ namespace AspnetRun.Infrastructure.Data
         {
             builder.ToTable("Product");
 
-            builder.HasKey(ci => ci.Id);
-
-            builder.Property(ci => ci.Id)
-               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-               .IsRequired();
+            builder.HasKey(ci => ci.Id);         
 
             builder.Property(cb => cb.ProductName)
                 .IsRequired()
@@ -38,11 +34,7 @@ namespace AspnetRun.Infrastructure.Data
         {
             builder.ToTable("Category");
 
-            builder.HasKey(ci => ci.Id);
-
-            builder.Property(ci => ci.Id)
-               .ForSqlServerUseSequenceHiLo("aspnetrun_type_hilo")
-               .IsRequired();
+            builder.HasKey(ci => ci.Id);            
 
             builder.Property(cb => cb.CategoryName)
                 .IsRequired()
