@@ -51,6 +51,16 @@ namespace AspnetRun.Core.ValueObjects.Base
             return !thisValues.MoveNext() && !otherValues.MoveNext();
         }
 
+        public static bool operator ==(ValueObject one, ValueObject two)
+        {
+            return EqualOperator(one, two);
+        }
+
+        public static bool operator !=(ValueObject one, ValueObject two)
+        {
+            return NotEqualOperator(one, two);
+        }
+
         public override int GetHashCode()
         {
             return GetAtomicValues()
